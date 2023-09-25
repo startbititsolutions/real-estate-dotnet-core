@@ -1,0 +1,195 @@
+﻿@using AspNetCoreHero.ToastNotification.Abstractions;
+@inject INotyfService _notyf
+<style>
+    #inputContainer input {
+        border: 1px solid #DADADA;
+        margin-top: 5px;
+        width: 100%;
+        height: 44px;
+    }
+</style>
+<style>
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+        .form-submit:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 12px !important;
+        margin-bottom: 10px;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+
+    ::placeholder {
+        color: rgb(218, 218, 218);
+        font-size:14px;
+       
+    }
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">ADD FAQ</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+                    @*<h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:115px">ADD FAQ : </h2>*@
+                    <form asp-action="Add" onsubmit="SubmitHandler(event)" method="post" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for=" Question"> Question</label>
+                                    <input type="text" class="form-control" id="Question" placeholder="Add question">
+                                    <span id="Questionerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="inputContainer">
+                                <div class=row>
+                                    <div class="form-group input-container col-sm-10">
+                                        <label for="Answer">Answer</label>
+                                        <input type="text" class="form-control" id="Answer" name="inputField[]" placeholder="Add answer">
+                                        <span id="Answererror" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-sm-1 text-center">
+                                        <button type="button" onclick="addInputField()" class="btn btn-primary" style="margin-top:37px;width:60px">+</button>
+                                    </div>
+                                    <div class="col-sm-1 text-center">
+                                        <button type="button" id="removebtn" onclick="remove()" class="btn btn-primary" style="margin-top:37px;width:60px">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center" style="margin-top:15px">
+                                <button type="submit" id="FAQForm" class="btn btn-primary form-submit"><i class=""></i>Add FAQ</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        function SubmitHandler(e) {
+            var notyf = new Notyf({
+                position: {
+                    x: 'right',
+                    y: 'top',
+                },
+                duration: 3000,
+                dismissible: true,
+               
+            });
+            e.preventDefault();
+            var AnswerList = document.getElementsByName("inputField[]")
+            var AnswerListArray = [];
+            AnswerList.forEach(function (item) {
+                AnswerListArray.push(item.value)
+            })
+            //Ajax
+            var formData = new FormData();
+            formData.append("Question", $('#Question')[0].value);
+            formData.append("Answer", AnswerListArray);
+            $.ajax({
+                url: '/Faq/Add',
+                type: 'POST',
+                data: formData,
+                processData: false, // Prevent jQuery from automatically transforming the data
+                contentType: false, // Prevent jQuery from automatically setting the Content-Type header
+                success: function (response) {
+                    notyf.success('FAQ Added successfully');
+                    setTimeout(function () {
+                        window.location.href = '/faq/Adminshow';
+                    }, 500);
+                    //window.location.href = "/faq/Adminshow";
+                },
+                error: function (xhr, status, error) {
+                    notyf.error('Added failed');
+
+                }
+            });
+        }
+        function addInputField() {
+            var inputContainer = document.getElementById("inputContainer");
+            var newInputContainer = document.createElement("div");
+            newInputContainer.className = "input-container";
+            var newInput = document.createElement("input");
+            newInput.type = "text";
+            newInput.name = "inputField[]";
+            //newInput.required. = "Please fill out this field ";
+            newInput.placeholder="Add more answer";
+            newInput.style.color ="#838383";
+            newInput.style.fontSize= "13px";
+            //newInput.placeholder= "Add answer";
+            newInputContainer.appendChild(newInput);
+            inputContainer.appendChild(newInputContainer);
+        } function remove() {
+
+            if ($('.input-container').length > 1) {
+
+                $('.input-container').last().remove();
+            }
+
+        }
+
+        $(document).ready(function () {
+            $("#FAQForm").on("click", function () {
+
+
+                var Question = $('#Question').val();
+                var Answer = $('#Answer').val();
+                if (Question == '') {
+                    $('#Questionerror').show();
+                    $('#Questionerror').html('Please fill out this field');
+                    event.preventDefault();
+                }
+                else {
+                    $('#Questionerror').hide();
+                    $('#Questionerror').html('');
+                }
+
+                if (Answer == '') {
+                    $('#Answererror').show();
+                    $('#Answererror').html('Please fill out this field');
+                    event.preventDefault();
+                }
+                else {
+                    $('#Answererror').hide();
+                    $('#Answererror').html('');
+                }
+            });
+        });
+    </script>
+}

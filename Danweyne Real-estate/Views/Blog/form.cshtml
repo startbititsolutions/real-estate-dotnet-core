@@ -1,0 +1,274 @@
+﻿@*@model Models.Database_Models.Blog*@
+@model Danweyne_Real_estate.Models.blogviewmodel
+@{
+    ViewData["Title"] = "form";
+}
+<style>
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+        .form-submit:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 12px !important;
+        margin-bottom: 10px;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">ADD BLOG</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+                 @*   <h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:115px">ADD BLOG : </h2>*@
+                    <form asp-action="form" id="blogform" method="post" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Title">Title</label>
+                                    <input asp-for="Title" type="text" class="form-control" id="Title" placeholder="Title">
+                                    <span id="titleerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Author">Author Name</label>
+                                    <input asp-for="AuthorName" type="text" class="form-control" id="AuthorName" placeholder="Author name">
+                                    <span id="authornameerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Blog">Blog Name</label>
+                                    <input asp-for="BlogName" type="text" class="form-control" id="BlogName" placeholder="Blog name">
+                                    <span id="blognameerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @* <div class="col-sm-4 col-sm-offset-1">
+                            <div class="picture-container">
+                            <div class="picture">
+                            <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                            <input asp-for=BlogImg required id="cover_image" accept="image/png, image/gif, image/jpeg, image/jpg">
+                            <span asp-validation-for="BlogImg" class="text-danger"></span>
+                            <span id="ImageValidation" class="text-danger" style="display:none">Invalid Image(Extenions allowed-:jpeg,gif,png,jpg)</span>
+                            </div>
+                            </div>
+                            </div>*@
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <input asp-for="BlogImg" type="file" class="form-control" id="cover_image" accept="image/png, image/gif, image/jpeg, image/jpg">
+                                    <span asp-validation-for="BlogImg" class="text-danger" id="imgerror"></span>
+                                    <span id="ImageValidation" class="text-danger" style="display:none">Invalid Image(Extenions allowed-:jpeg,gif,png,jpg)</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Summary">Summary</label>
+                                    <input asp-for="Summary" type="text" class="form-control" id="summary" placeholder="Summary">
+                                    <span id="summaryerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Discription">Description</label>
+                                    <textarea asp-for="BlogDesc" id="tiny" class="form-control"></textarea>
+                                    <span id="error" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                @*<button type="submit" id="submitbtn" class="btn btn-primary" style="margin-bottom: 11px;"><i class=""></i>Submit Blog</button>*@
+                                <button type="submit" id="submitblog" class="btn btn-primary form-submit">Add Blog</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+
+                        </div>
+                        @{
+                            if (@TempData["Msg"] != null)
+                            {
+                                <script>
+                                    alert('@TempData["msg"]')
+                                </script>
+                            }
+                        }
+                    </form>
+                    <div class="alert " role="alert" id="divMessage" style="margin-top: -20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            //$("#submitbtn").on("click",function(e){
+            //    e.preventDefault();
+            //    var v = $("#tiny").val();
+            //    console.log(v)
+            //});
+            $('.error').hide();
+            tinymce.init({
+                selector: 'textarea#tiny',
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'charmap', 'preview',
+                    'anchor', 'pagebreak',
+                    'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                    'fullscreen', 'insertdatetime',
+                    'media', 'table', 'emoticons', 'template', 'help'
+                ],
+                toolbar: 'undo redo | styles | bold italic | forecolor backcolor |bullist numlist outdent indent| alignleft aligncenter alignright alignjustify | ' +
+                    ' preview  help',
+
+
+
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                        chkSubmit();
+                    });
+                },
+
+            });
+           
+            $("#submitblog").on("click", function () {
+
+                console.log("ok")
+                var title = $('#Title').val();
+                var AuthorName = $('#AuthorName').val();
+                var BlogName = $('#BlogName').val();
+                var cover_image = $('#cover_image').val();
+                var summary = $('#summary').val();
+                var msg = $('#tiny').val();
+
+                //var ti=$.trim($(title).text());
+                //var au = $.trim($(AuthorName).text());
+                //var bl = $.trim($(BlogName).text());
+                //var co = $.trim($(cover_image).text());
+                //var su = $.trim($(summary).text());
+                var textmsg = $.trim($(msg).text());
+
+
+                if (textmsg == '' /*|| ti=='' || au=='' || bl=='' || co=='' || su==''*/) {
+
+                    //alert('nogo');
+                    $('#error').show();
+                    $('#error').html('Please fill out description');
+                    event.preventDefault();
+                }
+                else {
+                    //alert(textmsg);
+                    $('#error').hide();
+                    $('#error').html('');
+
+                }
+                if (title == '') {
+                    $('#titleerror').show();
+                    $('#titleerror').html('Please fill out title');
+                    event.preventDefault();
+                }
+                else {
+                    $('#titleerror').hide();
+                    $('#titleerror').html('');
+                }
+                if (AuthorName == '') {
+                    $('#authornameerror').show();
+                    $('#authornameerror').html('Please fill out author name');
+                    event.preventDefault();
+                }
+                else {
+                    $('#authornameerror').hide();
+                    $('#authornameerror').html('');
+                }
+                if (BlogName == '') {
+                    $('#blognameerror').show();
+                    $('#blognameerror').html('Please fill out blog name');
+                    event.preventDefault();
+                }
+                else {
+                    $('#blognameerror').hide();
+                    $('#blognameerror').html('');
+                }
+                if (cover_image == '' || cover_image == null) {
+                    console.log("imaagesssssssssss")
+                    $('#imgerror').show();
+                    $('#imgerror').html('Please select image');
+                    event.preventDefault();
+                }
+                else {
+                    $('#imgerror').hide();
+                    $('#imgerror').html('');
+                }
+                if (summary == '') {
+                    $('#summaryerror').show();
+                    $('#summaryerror').html('Please fill out summary');
+                    event.preventDefault();
+                }
+                else {
+                    $('#summaryerror').hide();
+                    $('#summaryerror').html('');
+                }
+            });
+
+            $("#cover_image").on('change', function () {
+
+                var IsValid = openFile($("#cover_image")[0].value)
+
+                if (IsValid) {
+                    $("#ImageValidation").css("display", "none")
+                }
+                else {
+                    $("#ImageValidation").css("display", "block")
+                }
+            });
+            $("#blogform").submit(function (e) {
+                var IsValid = openFile($("#cover_image")[0].value)
+
+                if (!IsValid) {
+                    e.preventDefault();
+                }
+            });
+
+
+        });
+        function openFile(file) {
+            var extension = file.substr((file.lastIndexOf('.') + 1));
+            if (extension == "png" || extension == "gif" || extension == "jpeg" || extension == "jpg") {
+                return true
+            }
+            else {
+                return false
+            }
+        };
+    </script>
+}

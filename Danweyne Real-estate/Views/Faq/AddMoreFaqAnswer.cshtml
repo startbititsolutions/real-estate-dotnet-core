@@ -1,0 +1,260 @@
+﻿@using AspNetCoreHero.ToastNotification.Abstractions;
+@inject INotyfService _notyf
+<style>
+    #inputContainer input {
+        border: 1px solid #DADADA;
+        margin-top: 5px;
+        width: 100%;
+        height: 44px;
+    }
+</style>
+<style>
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .form-submit:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 12px !important;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .form-cancel:hover {
+        background-color: #b52d3a;
+        color: white;
+    }
+</style>
+
+@if (TempData["addfaq"] != null)
+{
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                alert('@TempData["addfaq"]');
+            }, 1000);
+        });
+    </script>
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">UPDATE FAQ</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+                    @*<h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:148px">UPDATE FAQ : </h2>*@
+                    <form asp-action="Add" onsubmit="SubmitHandler(event)" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Question">Question</label>
+                                    <input type="text" class="form-control" id="Question" value="@ViewBag.Question.que" key="@ViewBag.Question.que_id" placeholder="Add question">
+                                    <span id="Questionerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="inputContainer">
+                                <div class="row">
+                                    @foreach (var item in ViewBag.Question.FaqAns)
+                                    {
+                                        <div class="form-group input-container col-sm-10">
+                                            <label for="Answer">Answer</label>
+                                            <input type="text" class="form-control" name="inputField[]" value="@item.ans" key="@item.ans_id" placeholder="Add answer">
+                                            <input type="hidden" name="deletedAnswerIds[]" value="@item.ans_id" />
+                                        </div>
+                                    }
+                                    <div class="col-sm-1 text-center">
+                                        <button type="button" onclick="addInputField()" class="btn btn-primary" style="margin-top:37px;width:60px">+</button>
+                                    </div>
+                                    @*<div class="col-sm-1 text-center">
+                                        <button type="button" id="removebtn" onclick="remove()" class="btn btn-primary" style="margin-top:37px;width:60px">-</button>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="col-sm-12 ">
+                                <span id="Answererror" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" id="FAQForm" class="btn btn-primary form-submit"><i class=""></i>Update</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .faq {
+        margin-left: 0px;
+        margin-right: 193px;
+    }
+
+    .ans {
+        margin-top: 8px;
+        width: 60px;
+        float: right;
+        margin-right: -91px;
+        margin-bottom: 5px;
+    }
+</style>
+@section Scripts{
+    <script>
+        function SubmitHandler(e) {
+            var notyf = new Notyf({
+                position: {
+                    x: 'right',
+                    y: 'top',
+                },
+                duration: 3000,
+                dismissible: true,
+            });
+            e.preventDefault();
+          
+            var AnswerList = document.getElementsByName("inputField[]");
+            var newAnswerList = document.getElementsByName("NewAns[]");
+            var oldAnswerListArray = [];
+            var newAnswerListArray = [];
+            var count = 0;
+            var newanscount = 0;
+            var newans = [];
+            var oldans = [];
+            console.log(AnswerList);
+            console.log(newAnswerList);
+            AnswerList.forEach(function (item) {
+                if (item.value == "") {
+                    count++;
+                } else {
+                    var obj = {
+                        [item.attributes[4].value]: item.value
+                    };
+                    oldans.push(obj);
+                    console.log(obj);
+                }
+            });
+
+            newAnswerList.forEach(function (item) {
+                if (item.value == "") {
+                    console.log("yes");
+                    newanscount++;
+                } else {
+                    $('#Answererror').hide();
+                    console.log(item.value);
+                    newans.push(item.value);
+                }
+            });
+
+            console.log(newans);
+            var faqobj = {
+                question: { [$('#Question')[0].attributes[4].nodeValue]: $('#Question')[0].value },
+                newans,
+                oldans
+            };
+            console.log(faqobj);
+            var faqobj = JSON.stringify(faqobj);
+            var formData = new FormData();
+            formData.append("object", faqobj);
+
+            $.ajax({
+                url: '/Faq/AddMoreFaqAnswer',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    notyf.success('FAQ Update successfully');
+                    setTimeout(function () {
+                        window.location.href = '/faq/Adminshow';
+                    }, 500);
+                    //window.location.href = "/faq/Adminshow";
+                },
+                error: function (xhr, status, error) {
+                    alert("Something went wrong.");
+                }
+            });
+        }
+
+        function addInputField() {
+            var inputContainer = document.getElementById("inputContainer");
+            var newInputContainer = document.createElement("div");
+            newInputContainer.className = "input-container row faq";
+
+
+            var newInput = document.createElement("input");
+            newInput.type = "text";
+            newInput.className = "form-control col-sm-10";
+            newInput.name = "NewAns[]";
+
+            var removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "btn btn-primary col-sm-1 ans";
+            //removeButton.style.marginTop = "37px";
+            removeButton.style.width = "60px";
+            removeButton.innerText = "-";
+            removeButton.onclick = function () {
+                inputContainer.removeChild(newInputContainer);
+            };
+
+            newInputContainer.appendChild(newInput);
+            newInputContainer.appendChild(removeButton);
+            inputContainer.appendChild(newInputContainer);
+        }
+
+    
+
+        $(document).ready(function () {
+            $("#FAQForm").on("click", function (e) {
+                var Question = $('#Question').val();
+                var Answer = $('#Answer').val();
+
+                if (Question.trim() === "") {
+                    $('#Questionerror').text('Please fill out this field');
+                    e.preventDefault();
+                } else {
+                    $('#Questionerror').text('');
+                }
+
+                var emptyAnswerFields = false;
+                $("input[name='inputField[]']").each(function () {
+                    if ($(this).val().trim() === "") {
+                        emptyAnswerFields = true;
+                        return false; // Exit the loop if an empty field is found
+                    }
+                });
+
+                if (emptyAnswerFields) {
+                    $('#Answererror').text('One or more Answer fields are empty');
+                    e.preventDefault();
+                } else {
+                    $('#Answererror').text('');
+                }
+            });
+        });
+    </script>
+}

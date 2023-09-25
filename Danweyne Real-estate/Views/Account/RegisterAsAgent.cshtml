@@ -1,0 +1,246 @@
+﻿@{
+    ViewData["Title"] = "ACCOUNT";
+}
+@model Models.View_Model.UserRegistrationModel
+@{
+    var error = TempData["registererror"];
+    var success = TempData["RegisterSucessMessage"];
+    var str = (string)TempData.Peek("UserRole");
+}
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">NEW ACCOUNT</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["RegisterSucessMessage"] != null)
+{
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                alert('@TempData["RegisterSucessMessage"]');
+            }, 1000);
+        });
+    </script>
+}
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+        
+        <div class="col-md-12">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2>New account : </h2>
+                    <form asp-action="RegisterAsAgent" id="Registerfrom" method="post">
+                        <div class="form-group">
+                            <label asp-for="FirstName">First Name</label>
+                            <input asp-for="FirstName" type="text" class="form-control" id="registerfirstname" placeholder="First name">
+                            <span class=" text-danger" id="firtnameerror">First name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LastName">Last Name</label>
+                            <input asp-for="LastName" type="text" class="form-control" id="registerlastname" placeholder="Last name">
+                            <span class=" text-danger" id="lastnameerror">Last name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email">Email</label>
+                            <input asp-for="Email" type="text" class="form-control" id="registeremail" placeholder="E-mail">
+                            <span class=" text-danger" id="registeremailerror"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" id="registerpassword" placeholder="Password">
+                            <span class=" text-danger" id="passworderror">Password is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword">Confirm Password</label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm password">
+                            <span class=" text-danger" id="confirmpassword">Confirm password required</span>
+                        </div>
+                        @if (str == "Admin")
+                        {
+
+                            <div class="form-group">
+                                <label asp-for="UserRole">User Role</label>
+                                <select asp-for="UserRole" class="form-control" id="UserRole">
+                                    <option>User</option>
+                                    <option>Agent</option>
+                                    <option>Admin</option>
+                                </select>
+                                @*  <span class=" text-danger" id="confirmpassword">Confirm Password required</span>*@
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group" style="display:none">
+                                <label asp-for="UserRole">User Role</label>
+                                <select asp-for="UserRole" class="form-control" id="UserRole">
+                                    <option value="User">User</option>
+                                    <option value="Agent">Agent</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                                @*  <span class=" text-danger" id="confirmpassword">Confirm Password required</span>*@
+                            </div>
+                        }
+                        @*  <div class="text-center">
+                        <input type="submit" class="btn btn-default" value="Register" id="registersubmit">
+                        </div>*@
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" id="registersubmit" class="btn btn-primary" value="Register"><i class=""></i>Register</button>
+                        </div>
+                    </form>
+                    @if (error != null)
+                    {
+                        <div class="text-danger">@error</div>
+                    }@if (success != null)
+                    {
+                        <div class="text-success">@success </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            $('.emialerror').hide();
+            $('.passworderror').hide();
+            var userlocation = window.location.href
+            if (userlocation.indexOf("Account/Index") != -1) {
+
+                $("#nav_login").hide();
+            }
+            else {
+
+                $("#nav_login").show();
+            }
+
+            $("#loginsubmit").click(function () {
+                //alert("login")
+                //console.log($(".emailnew"))
+                var regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                var email = $("#emaillogin").val();
+                var password = $("#passwordlogin").val();
+                // Do something with the email and password values
+                //console.log(email.val());
+                //console.log(password);
+                //console.log($("#email")[0])
+                //event.preventDefault()})
+                //var email = $("#email").val();
+                //console.log(email)
+                //var password = $("#password")[0];
+                //console.log($("#password")[0].val())
+                if (email == "" || email == null) {
+
+                    $('.emialerror').show();
+                    $('.emialerror').html('Email is required');
+                    event.preventDefault()
+                }
+                else if (!regex.test(email)) {
+                    //alert("invalid email id");
+
+                    $('.emialerror').html('You have entered an invalid email address!');
+                    event.preventDefault();
+
+                }
+                else {
+                    $('.emialerror').hide();
+
+                }
+                if (password == "" || password == null) {
+
+                    $('.passworderror').show();
+                    event.preventDefault()
+                } else {
+                    $('.passworderror').hide();
+                }
+
+            });
+            $("#firtnameerror").hide(); $("#lastnameerror").hide();
+            $("#registeremailerror").hide();
+            $("#passworderror").hide();
+            $("#confirmpassword").hide();
+            $("#registersubmit").click(function () {
+                var regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                //alert("login")
+                //console.log($(".emailnew"))
+                var email = $("#registeremail").val();
+                var password = $("#registerpassword").val();
+                var firstname = $("#registerfirstname").val();
+                var lastname = $("#registerlastname").val();
+                var confirmepassword = $("#registerConfirmPassword").val();
+                if (firstname == "" || firstname == undefined) {
+                    $("#firtnameerror").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#firtnameerror").hide();
+                }
+                if (lastname == "" || lastname == undefined) {
+                    $("#lastnameerror").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#lastnameerror").hide();
+                }
+                if (email == "" || email == null) {
+                    $("#registeremailerror").show();
+                    $('#registeremailerror').html('Email is required');
+                    event.preventDefault()
+                }
+                else if (!regex.test(email)) {
+                    //alert("invalid email id");
+
+                    $('#registeremailerror').html('You have entered an invalid email address!');
+                    event.preventDefault();
+
+                }
+                else {
+                    $("#registeremailerror").hide();
+                }
+                if (password == "" || password == undefined) {
+                    $("#passworderror").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#passworderror").hide();
+                }
+                if (confirmepassword == "" || confirmepassword == undefined) {
+                    $("#confirmpassword").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#confirmpassword").hide();
+                }
+                if (password != "" && confirmepassword != "") {
+
+                    if (password != confirmepassword) {
+                        $("#confirmpassword").text("password not matched");
+                        $("#confirmpassword").show();
+                        event.preventDefault();
+                    }
+                    else {
+                        $("#confirmpassword").hide();
+                    }
+                }
+
+
+
+
+
+            });
+
+        });
+
+
+
+    </script>
+}

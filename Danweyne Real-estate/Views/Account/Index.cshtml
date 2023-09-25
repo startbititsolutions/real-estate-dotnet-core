@@ -1,0 +1,169 @@
+﻿@{
+    ViewData["Title"] = "ACCOUNT";
+}
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">REGISTER USER / AGENT</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+        @Html.Partial("_RegisterPartialView")
+        @if (!(User.Identity.IsAuthenticated))
+        {
+            @Html.Partial("_LoginPartialView")
+        }
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            $('.emialerror').hide();
+            $('.passworderror').hide();
+            var userlocation = window.location.href
+            if (userlocation.indexOf("Account/Index") != -1) {
+
+                $("#nav_login").hide();
+            }
+            else {
+
+                $("#nav_login").show();
+            }
+
+            $("#loginsubmit").click(function () {
+                //alert("login")
+                //console.log($(".emailnew"))
+                var regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                var email = $("#emaillogin").val();
+                var password = $("#passwordlogin").val();
+                // Do something with the email and password values
+                //console.log(email.val());
+                //console.log(password);
+                //console.log($("#email")[0])
+                //event.preventDefault()})
+                //var email = $("#email").val();
+                //console.log(email)
+                //var password = $("#password")[0];
+                //console.log($("#password")[0].val())
+                if (email == "" || email == null  ) {
+
+                    $('.emialerror').show();
+                    $('.emialerror').html('Email is required');
+                    event.preventDefault()
+                }
+                else if (!regex.test(email)) {
+                    //alert("invalid email id");
+                    $('.emialerror').show();
+                    $('.emialerror').html('You have entered an invalid email address!');
+                    event.preventDefault();
+
+                }
+               
+                else {
+                    $('.emialerror').hide();
+
+                }
+                if (password == "" || password == null) {
+
+                    $('.passworderror').show();
+                    event.preventDefault()
+                } else {
+                    $('.passworderror').hide();
+                }
+                
+            });
+            $("#firtnameerror").hide(); $("#lastnameerror").hide();
+            $("#registeremailerror").hide();
+            $("#passworderror").hide();
+            $("#confirmpassword").hide();
+            $("#registersubmit").click(function () {
+                var regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                var rege =/^(?=.*\d)(?=.*[!@@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,64}$/;
+                //alert("login")
+                //console.log($(".emailnew"))
+                var email = $("#registeremail").val();
+                var password = $("#registerpassword").val();
+                var firstname = $("#registerfirstname").val();
+                var lastname = $("#registerlastname").val();
+                var confirmepassword = $("#registerConfirmPassword").val();
+                if (firstname == "" || firstname == undefined) {
+                    $("#firtnameerror").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#firtnameerror").hide();
+                }
+                if (lastname == "" || lastname == undefined) {
+                    $("#lastnameerror").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#lastnameerror").hide();
+                }
+                if (email == "" || email == null) {
+                    $("#registeremailerror").show();
+                    $('#registeremailerror').html('Email is required');
+                    event.preventDefault()
+                }
+                else if (!regex.test(email)) {
+                    //alert("invalid email id");
+                    $('#registeremailerror').show();
+                    $('#registeremailerror').html('You have entered an invalid email address!');
+                    event.preventDefault();
+
+                }
+                else {
+                    $("#registeremailerror").hide();
+                }
+                if (password == "" || password == undefined) {
+                    $("#passworderror").show();
+                    $('#passworderror').html('Password is required');
+                    event.preventDefault()
+                }
+                else if (!rege.test(password)) {
+                    $("#passworderror").show();
+                    $('#passworderror').html('Password must be :<br>Min.8 ,max.65 characters<br> Atleast one character UPPERCASE<br> Atleast one character lowercase<br> Atleast one number(0-9)<br> Atleast one symbol<br> Passwords match');
+                    event.preventDefault();
+                }
+                else {
+                    $("#passworderror").hide();
+                }
+                if (confirmepassword == "" || confirmepassword == undefined) {
+                    $("#confirmpassword").show();
+                    event.preventDefault()
+                }
+                else {
+                    $("#confirmpassword").hide();
+                }
+                if (password != "" && confirmepassword != "") {
+
+                    if (password != confirmepassword) {
+                        $("#confirmpassword").text("password not matched");
+                        $("#confirmpassword").show();
+                        event.preventDefault();
+                    }
+                    else {
+                        $("#confirmpassword").hide();
+                    }
+                }
+
+
+
+
+
+            });
+
+        });
+
+
+
+    </script>
+}

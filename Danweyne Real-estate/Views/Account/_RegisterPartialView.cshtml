@@ -1,0 +1,78 @@
+﻿@model Models.View_Model.UserRegistrationModel
+@{
+    var error = TempData["registererror"];
+    var success = TempData["RegisterSucessMessage"];
+    var str = (string)TempData.Peek("UserRole");
+}
+<div class="@(User.Identity.IsAuthenticated ? "col-md-12" : "col-md-6")">
+    <div class="box-for overflow">
+        <div class="col-md-12 col-xs-12 register-blocks">
+            <h2>New account : </h2>
+            <form asp-action="Registering" id="Registerfrom" method="post">
+                <div class="form-group">
+                    <label asp-for="FirstName">First Name</label>
+                    <input asp-for="FirstName" type="text" class="form-control" id="registerfirstname" placeholder="First name">
+                    <span class=" text-danger" id="firtnameerror">First name is required</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" type="text" class="form-control" id="registerlastname" placeholder="Last name">
+                    <span class=" text-danger" id="lastnameerror">Last name is required</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" type="text" class="form-control" id="registeremail" placeholder="E-mail">
+                    <span class=" text-danger" id="registeremailerror"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" id="registerpassword" placeholder="Password">
+                    <span class=" text-danger" id="passworderror"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" id="registerConfirmPassword" placeholder=" Confirm password">
+                    <span class=" text-danger" id="confirmpassword">Confirm password required</span>
+                </div>
+                @if (str == "Admin")
+                {
+
+                    <div class="form-group">
+                        <label asp-for="UserRole">User Role</label>
+                        <select asp-for="UserRole" class="form-control" id="UserRole">
+                            <option>User</option>
+                            <option>Agent</option>
+                            <option>Admin</option>
+                        </select>
+                        @*  <span class=" text-danger" id="confirmpassword">Confirm Password required</span>*@
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group" style="display:none">
+                        <label asp-for="UserRole">User Role</label>
+                        <select asp-for="UserRole" class="form-control" id="UserRole">
+                            <option value="User">User</option>
+                            <option value="Agent">Agent</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        @*  <span class=" text-danger" id="confirmpassword">Confirm Password required</span>*@
+                    </div>
+                }
+              @*  <div class="text-center">
+                    <input type="submit" class="btn btn-default" value="Register" id="registersubmit">
+                </div>*@
+                <div class="col-sm-12 text-center">
+                    <button type="submit" id="registersubmit" class="btn btn-primary" value="Register"><i class=""></i>Register</button>
+                </div>
+            </form>
+            @if (error != null)
+            {
+                <div class="text-danger">@error</div>
+            }@if (success != null)
+            {
+                <div class="text-success">@success </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Danweyne Real-estate.props" />
+</Project>

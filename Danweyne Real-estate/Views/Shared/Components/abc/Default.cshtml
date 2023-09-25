@@ -1,0 +1,28 @@
+﻿@{
+    var role = ViewBag.RoleVB;
+    var strisng = "";
+    if (role != null)
+    {
+        strisng = role[0];
+    }
+
+}
+@{
+    if (ViewBag.user == null)
+    {
+
+        <button class="navbar-btn nav-button wow bounceInRight login" id="nav_login" onclick="window.location.replace('/Account/Index')" data-wow-delay="0.45s">Login</button>
+    }
+
+    if (strisng != "User" && strisng != "")
+    {
+        <button class="navbar-btn nav-button wow fadeInRight submitone" onclick="window.location.replace('/properties/add')" data-wow-delay="0.48s">Submit</button>
+
+    }
+
+
+
+
+
+
+}

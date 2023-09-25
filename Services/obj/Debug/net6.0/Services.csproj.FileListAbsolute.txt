@@ -1,0 +1,68 @@
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.deps.json
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.dll
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.pdb
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.AssemblyInfoInputs.cache
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.AssemblyInfo.cs
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.CoreCompileInputs.cache
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.dll
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\refint\Services.dll
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.pdb
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\ref\Services.dll
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\DataAccess.dll
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Models.dll
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\DataAccess.pdb
+E:\Real Estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Models.pdb
+E:\Real Estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.CopyComplete
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.deps.json
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.dll
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.pdb
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Models.dll
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\bin\Debug\net6.0\Models.pdb
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.AssemblyInfoInputs.cache
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.AssemblyInfo.cs
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.CoreCompileInputs.cache
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.CopyComplete
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.dll
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\refint\Services.dll
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.pdb
+C:\Users\Startbit\Desktop\Danweyne Real-estate\Danweyne Real-estate\Services\obj\Debug\net6.0\ref\Services.dll
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.deps.json
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.dll
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\Services.pdb
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\DataAccess.dll
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\Models.dll
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\DataAccess.pdb
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\bin\Debug\net6.0\Models.pdb
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.AssemblyInfoInputs.cache
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.AssemblyInfo.cs
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.CoreCompileInputs.cache
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.csproj.CopyComplete
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.dll
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\refint\Services.dll
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\Services.pdb
+C:\Bhairav Raj\RealEstate\Danweyne Real-estate16,05,2023 after merge\Danweyne Real-estate\Services\obj\Debug\net6.0\ref\Services.dll
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\Services.deps.json
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\Services.dll
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\Services.pdb
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\DataAccess.dll
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\Models.dll
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\DataAccess.pdb
+C:\real-estate-dotnet-core\Services\bin\Debug\net6.0\Models.pdb
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.AssemblyInfoInputs.cache
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.AssemblyInfo.cs
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.csproj.CoreCompileInputs.cache
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.csproj.CopyComplete
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.dll
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\refint\Services.dll
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\Services.pdb
+C:\real-estate-dotnet-core\Services\obj\Debug\net6.0\ref\Services.dll

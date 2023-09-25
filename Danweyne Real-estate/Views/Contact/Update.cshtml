@@ -1,0 +1,268 @@
+﻿@model Models.Database_Models.Contact
+
+@{
+    ViewData["Title"] = "Update Contact";
+}
+
+@*<style>
+     .form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size:15px;
+        margin-top:25px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .form-submit:hover {
+            background-color: #0056b3;
+        }
+        .contact{
+        margin-left: 85px;
+        margin-right: 160px;
+    }
+    .btn{
+        margin-left: 440px;
+        margin-bottom: 20px;
+    }
+</style>*@
+<style>
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 0px;
+        cursor: pointer;
+        margin-left: 12px !important;
+        height:42px;
+        margin-bottom:11px;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+</style>
+@if (ViewBag.ErrorMessage != null)
+{
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Update Contact</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<form method="post" asp-action="Update" asp-controller="Contact" class="contact">
+    <input type="hidden" asp-for="ContactId" />
+
+    <div class="form-group">
+        <label asp-for="FirstName"  class="form-label">FirstName:</label>
+        <input type="text" asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"  class="form-label">LastName:</label>
+        <input type="text" asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"  class="form-label">Email:</label>
+        <input type="email" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Subject"  class="form-label">Subject:</label>
+        <input type="text" asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Message"  class="form-label">Message:</label>
+        <textarea asp-for="Message" class="form-control"></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" name="id" value="@Model.ContactId" />
+
+    <button type="submit" id="updateButton" onclick="showUpdateAlert()" class="btn btn-primary form-submit">Update</button>
+</form>
+*@
+
+
+
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+                    <h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:193px">UPDATE CONTACT : </h2>
+                   <form method="post" asp-action="Update" asp-controller="Contact" class="contact">
+                     <input type="hidden" asp-for="ContactId" />
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="FirstName">First Name</label>
+                                    <input type="text" asp-for="FirstName" class="form-control" id="FirstName" />
+                                    <span id="firstnameerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="LastName">Last Name</label>
+                                    <input type="text" asp-for="LastName" class="form-control" id="LastName" />
+                                    <span id="lastnameerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Email"> Email</label>
+                                    <input type="email" asp-for="Email" class="form-control" id="Email" />
+                                    <span id="emailerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Subject">Subject</label>
+                                    <input type="text" asp-for="Subject" class="form-control" id="Subject" />
+                                    <span id="subjecterror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Message">Message</label>
+                                    <textarea asp-for="Message" class="form-control" id="Message"></textarea>
+                                    <span id="error" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <input type="hidden" name="id" value="@Model.ContactId" />
+
+    <button type="submit" id="updateButton" onclick="showUpdateAlert()" class="btn btn-primary form-submit" style="margin-bottom:10px">Update</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+                        </div>
+                       
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.error').hide();
+            $("#updateButton").on("click", function () {
+
+                var regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                var firstname = $('#FirstName').val();
+                var lastname = $('#LastName').val();
+                var email = $('#Email').val();
+                var subject = $('#Subject').val();
+                var message = $('#Message').val();
+
+                //var textmsg = $.trim($(msg).text());
+
+                if (firstname == '') {
+                    $('#firstnameerror').show();
+                    $('#firstnameerror').html('Firstname is required');
+                    event.preventDefault();
+                }
+                else {
+                    $('#firstnameerror').hide();
+                    $('#firstnameerror').html('');
+                }
+                if (lastname == '') {
+                    $('#lastnameerror').show();
+                    $('#lastnameerror').html('Lastname is required');
+                    event.preventDefault();
+                }
+                else {
+                    $('#lastnameerror').hide();
+                    $('#lastnameerror').html('');
+                }
+                if (email == '') {
+                    $('#emailerror').show();
+                    $('#emailerror').html('Email is required');
+                    event.preventDefault();
+                }
+                else if (!regex.test(email)) {
+                    //alert("invalid email id");
+                    console.log(regex.test(email))
+                    $('#emailerror').html('You have entered an invalid email address!');
+                    event.preventDefault();
+
+                }
+                else {
+                    $('#emailerror').hide();
+                    $('#emailerror').html('');
+                }
+                if (subject == '') {
+                    $('#subjecterror').show();
+                    $('#subjecterror').html('Subject is required');
+                    event.preventDefault();
+                }
+                else {
+                    $('#subjecterror').hide();
+                    $('#subjecterror').html('');
+                }
+
+                if (message == '') {
+
+                    //alert('nogo');
+                    $('#error').show();
+                    $('#error').html('Message is required');
+                    event.preventDefault();
+                }
+                else {
+                    //alert(textmsg);
+                    $('#error').hide();
+                    $('#error').html('');
+
+                }
+            });
+
+
+
+
+        });
+    </script>
+}

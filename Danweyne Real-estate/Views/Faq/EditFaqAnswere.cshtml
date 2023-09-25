@@ -1,0 +1,63 @@
+﻿@model Models.Database_Models.FaqAns
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Edit FaQ Anwer</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box-for overflow" style="margin-top: 15px;margin-bottom: 15px">
+            <div class="col-md-12 col-xs-12 login-blocks">
+                <h2>Faq Answere:</h2>
+                <form asp-action="EditFaqAnswer" method="post">
+                    <div class="form-group">
+                        <input asp-for="ans_id" hidden  value="@Model.ans_id">
+                        <input asp-for="ans_id" hidden value="@Model.que_id">
+                        <label asp-for="ans">Answer</label>
+                        <input asp-for="ans" type="text" class="form-control" value="@Model.ans" id="ans">
+                        <span id="error" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 text-right">
+                        <button type="submit" class="btn btn-primary" id="submit"><i class=""></i>Submit</button>
+                    </div>
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#error').hide();
+            $("#submit").on("click", function () {
+
+                var ans = $('#ans').val();
+
+
+                if (ans == '' || ans == null) {
+
+                    $('#error').show();
+                    $('#error').html('Please fill out this field');
+
+                    event.preventDefault();
+                }
+
+                else {
+                    $('#error').hide();
+                    $('#error').html('');
+                }
+
+
+
+            });
+        });
+
+    </script>
+}

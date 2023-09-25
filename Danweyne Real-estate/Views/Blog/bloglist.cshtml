@@ -1,0 +1,205 @@
+﻿@*@model Danweyne_Real_estate.Models.blogviewmodel*@
+@model List<Models.Database_Models.Blog>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">BLOGS</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+
+<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+    <div class="container">
+        <div class="row">
+            @foreach(var item in Model)
+            {
+            <div class="blog-list col-md-12 pl0">
+                <section class="post">
+                    <div class="text-center padding-b-50">
+                            <h3 class="wow fadeInLeft animated" style="margin-bottom:25px;text-transform: uppercase;">@item.Title</h3>
+                        <div class="title-line wow fadeInRight animated"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="author-category">
+                                By <a href="#">@item.AuthorName</a> in <a href="#">@item.BlogName</a>
+                            </p>
+                        </div>
+                        <div class="col-sm-6 right">
+                            <p class="date-comments">
+                                @*<a href="#"><i class="fa fa-calendar-o"></i>@item.DateTime</a>*@
+                                    <span><i class="fa fa-calendar-o"></i> @item.DateTime</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="image wow fadeInLeft animated">
+                            <a href="/blog/BlogDetails/@item.BlogId">
+
+                                <img src="~/@item.BlogImg" class="img-responsive" alt="Example blog post alt" style="width:100%;height:455px;">
+                        </a>
+                    </div>
+                        <div class="intro"> @Html.Raw(item.Summary)</div>
+                    <p class="read-more">
+                            <a asp-controller="blog" asp-action="BlogDetails" asp-route-id="@item.BlogId" class="btn btn-default btn-border">Continue reading</a>
+                       @*<a href=" /blog/BlogDetails/@item.BlogId" class="btn btn-default btn-border">Continue reading</a>*@
+                    </p>
+                </section>
+
+            </div>
+               
+            }
+            <div id="pagination" class="text-right"></div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        // Define the number of items per page and the current page
+        var itemsPerPage = 5;
+        var currentPage = 1;
+
+        // Calculate the total number of pages
+        var totalItems = $(".blog-list .post").length;
+        var totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        // Show the first page and hide the rest
+        $(".blog-list .post").hide();
+        $(".blog-list .post").slice(0, itemsPerPage).show();
+
+        // Generate pagination links
+        var paginationHTML = "";
+        paginationHTML += '<a href="#" class="prev-btn">Prev </a>';
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHTML += '<a href="#" class="pagination-link';
+            if (i === currentPage) {
+                paginationHTML += ' active';
+            }
+            paginationHTML += '">' + i + '</a>';
+        }
+        paginationHTML += '<a href="#" class="next-btn">Next</a>';
+
+        // Display pagination links
+        $("#pagination").html(paginationHTML);
+
+        // Handle pagination link clicks
+        $("#pagination").on("click", ".pagination-link", function (e) {
+            e.preventDefault();
+
+            // Get the clicked page number
+            var clickedPage = parseInt($(this).text());
+
+            // Show the corresponding items and hide the rest
+            var startIndex = (clickedPage - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            $(".blog-list .post").hide().slice(startIndex, endIndex).show();
+
+            // Update the current page and active link
+            currentPage = clickedPage;
+            $(".pagination-link").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        // Handle previous button click
+        $("#pagination").on("click", ".prev-btn", function (e) {
+            e.preventDefault();
+
+            if (currentPage > 1) {
+                currentPage--;
+
+                // Show the previous page of items
+                var startIndex = (currentPage - 1) * itemsPerPage;
+                var endIndex = startIndex + itemsPerPage;
+                $(".blog-list .post").hide().slice(startIndex, endIndex).show();
+
+                // Update the active link
+                $(".pagination-link").removeClass("active");
+                $(".pagination-link").eq(currentPage - 1).addClass("active");
+            }
+        });
+
+        // Handle next button click
+        $("#pagination").on("click", ".next-btn", function (e) {
+            e.preventDefault();
+
+            if (currentPage < totalPages) {
+                currentPage++;
+
+                // Show the next page of items
+                var startIndex = (currentPage - 1) * itemsPerPage;
+                var endIndex = startIndex + itemsPerPage;
+                $(".blog-list .post").hide().slice(startIndex, endIndex).show();
+
+                // Update the active link
+                $(".pagination-link").removeClass("active");
+                $(".pagination-link").eq(currentPage - 1).addClass("active");
+            }
+        });
+    });
+</script>
+}
+<style>
+    #pagination {
+        margin-top: 20px;
+    }
+
+    .pagination-link {
+        display: inline-block;
+        padding: 5px 14px;
+        color: #999999;
+        text-decoration: none;
+        border: 1px solid #dddddd;
+        background-color: #ffffff;
+    }
+    .prev-btn{
+        display: inline-block;
+        padding: 5px 10px;
+        color: #999999;
+        text-decoration: none;
+        border: 1px solid #dddddd;
+        background-color: #ffffff;
+    }
+    .next-btn{
+        display: inline-block;
+        padding: 5px 10px;
+        color: #999999;
+        text-decoration: none;
+        border: 1px solid #dddddd;
+        background-color: #ffffff;
+    }
+
+    .prev-btn:hover{
+        border: 1px solid #FDC600 !important;
+        color: #FDC600 !important;
+        cursor: pointer;
+    }
+
+    .next-btn:hover{
+        border: 1px solid #FDC600 !important;
+        color: #FDC600 !important;
+        cursor: pointer;
+    }
+
+    .pagination-link:hover{
+        border: 1px solid #FDC600 !important;
+        color: #FDC600 !important;
+        cursor: pointer;
+    }
+        .pagination-link.active {
+        background-color: #ffffff;
+        border: 1px solid #FDC600 !important;
+        color: #FDC600 !important;
+        cursor: pointer;
+        }
+</style>

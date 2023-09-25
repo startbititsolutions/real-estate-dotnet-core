@@ -1,0 +1,190 @@
+﻿@model Danweyne_Real_estate.Models.UpdateBannerViewModel
+
+@{
+    ViewData["Title"] = "Update Blog";
+}
+
+<style>
+    .form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 15px;
+        margin-top: 25px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .form-submit:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 12px !important;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+
+    .contact {
+        margin-left: 20px;
+        margin-right: 35px;
+    }
+
+    .btn {
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Update Banner</h1>
+            </div>
+        </div>
+    </div>
+</div>
+@*
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}*@
+
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+                   @* <h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:190px">UPDATE BANNER : </h2>*@
+                    <form method="post" enctype="multipart/form-data" asp-action="Update" asp-controller="banner" id="updateBannerForm">
+                        <input type="hidden" asp-for="BannerId" />
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="BannerName" class="form-label">Banner Name</label>
+                                    <input type="text" asp-for="BannerName" class="form-control" placeholder ="Banner name"/>
+                                    <span asp-validation-for="BannerName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Current Image</label>
+                                    @if (!string.IsNullOrEmpty(Model.OldImage))
+                                    {
+                                        string imagePath = "/" + Model.OldImage.TrimStart('/');
+                                        <img id="bannerImg" src="@Url.Content(imagePath)" alt="Current Image" class="img-thumbnail" width="200" />
+                                    }
+                                    else
+                                    {
+                                        <p>No image available</p>
+                                    }
+                                    <input type="hidden" asp-for="OldImage" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="NewImage">New Image</label>
+                                    <input asp-for="NewImage" type="file" class="form-control" id="cover_image" accept="image/png, image/gif, image/jpeg, image/jpg">
+                                    <span asp-validation-for="NewImage" class="text-danger" id="imgerror"></span>
+                                    <span id="ImageValidation" class="text-danger" style="display:none">Invalid Image(Extenions allowed-:jpeg,gif,png,jpg)</span>
+                                </div>
+                            </div>
+                            @* <div class="col-sm-12">
+                            <div class="form-group">
+                            <label asp-for="NewImage" class="form-label">New Image:</label>
+                            <input type="file" class="form-control-file" name="NewImage" id="NewImage" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+                            <span asp-validation-for="NewImage" class="text-danger"></span>
+                            <span id="ImageValidation" class="text-danger" style="display:none">Invalid Image (Allowed: JPEG, JPG, PNG)</span>
+                            </div>
+                            </div>*@
+
+                            <div class="col-sm-12 text-center">
+                                <button type="submit"  class="btn btn-primary form-submit">Update</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#updateBannerForm').validate({
+                rules: {
+                    BannerName: {
+                        required: true
+                    },
+                    NewImage: {
+                        accept: "image/jpeg, image/png"
+                    }
+                },
+                messages: {
+                    BannerName: {
+                        required: "Please enter a banner name"
+                    },
+                    NewImage: {
+                        accept: "Please select a valid image file (JPEG/PNG)"
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    if (element.attr("name") == "BannerName") {
+                        error.insertAfter(element);
+                    } else if (element.attr("name") == "NewImage") {
+                        $("#ImageValidation").show();
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+}

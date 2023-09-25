@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-Danweyne_Real_estate-d7c10236-78c7-48c9-bd34-022c8a9ceb32</UserSecretsId>
+    <RootNamespace>Danweyne_Real_estate</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\Files\**" />
+    <Content Remove="wwwroot\Files\**" />
+    <EmbeddedResource Remove="wwwroot\Files\**" />
+    <None Remove="wwwroot\Files\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\tinymce\CHANGELOG.md" />
+    <None Include="wwwroot\tinymce\js\tinymce\icons\default\icons.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\langs\README.md" />
+    <None Include="wwwroot\tinymce\js\tinymce\models\dom\model.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\anchor\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\autolink\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\autosave\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\charmap\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\codesample\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\code\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\directionality\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\emoticons\js\emojiimages.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\emoticons\js\emojiimages.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\emoticons\js\emojis.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\emoticons\js\emojis.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\help\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\image\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\importcss\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\link\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\lists\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\media\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\preview\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\quickbars\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\save\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\table\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\template\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\themes\silver\theme.min.js" />
+    <None Include="wwwroot\tinymce\js\tinymce\tinymce.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="toastr" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\tinymce\js\tinymce\tinymce.d.ts" />
+  </ItemGroup>
+
+</Project>

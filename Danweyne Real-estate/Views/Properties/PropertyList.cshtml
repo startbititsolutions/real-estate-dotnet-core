@@ -1,0 +1,170 @@
+﻿@model IEnumerable< Models.Database_Models.Property>
+@{
+    var count = Model.Count();
+    var message = "";
+    if (count == 0)
+    {
+        message = "No Data Found";
+    }
+}
+@if (message != "")
+{
+    <h1>@message</h1>
+}
+else
+{
+    @foreach (var item in Model)
+    {
+        var str = item.PropertyName.Replace(" ", "-");
+        <div class="col-md-4 p0">
+            <div class="box-two proerty-item">
+                <div class="item-thumb">
+                    <a href="/property/@item.PropertyId-@str"><img src="@item.CoverImageUrl"></a>
+                </div>
+
+                <div class="item-entry overflow">
+                    <h6 class="property-name"><a href="/property/@item.PropertyId-@str"> @item.PropertyName</a></h6>
+                    <div class="dot-hr"></div>
+                    <span class="pull-left"><b> Area :</b> @item.Area </span>
+                    <span class="proerty-price pull-right"> $@item.PropertyPrice.ToString("#,##0")</span>
+                    <p id="propertyDescription_@item.PropertyId" style="display: none;">@item.PropertyDescription</p>
+                    <button id="readMoreButton_@item.PropertyId" class="btn btn-link read-more-button">Read More</button>
+                    <button id="readLessButton_@item.PropertyId" class="btn btn-link read-less-button" style="display: none;">Read Less</button>
+                    <div class="property-icon">
+                        <img src="assets/img/icon/bed.png">(@item.BedRooms)|
+                        <img src="assets/img/icon/shawer.png">(@item.BathRooms)|
+                        <img src="assets/img/icon/cars.png">(@item.Garage)
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    }
+
+}
+<div class="col-md-12">
+    <div class="pull-right">
+        <div class="pagination">
+            <ul>
+                @if ((int)TempData.Peek("prev") >= 0)
+                {
+                    <li class="page-link" onclick="pageLinkBtn(@TempData.Peek("prev"))" id="prev"><span>Prev</span></li>
+
+                }
+                else
+                {
+                    <li class="page-link disabled" id="prev"><span>Prev</span></li>
+
+                }
+
+                @for (var i = 1; i <= (int)TempData.Peek("TotalPage"); i++)
+                {
+                    if (i == (int)TempData.Peek("currentPage"))
+                    {
+                        <li class="page-link active" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+
+                    }
+                    else
+                    {
+                        if ((int)TempData.Peek("TotalPage") < 10)
+                        {
+                            <li class="page-link" onclick="pageLinkBtn(@Math.Abs(i*9-9))" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+
+                        }
+                        else
+                        {
+                            if (i < (int)TempData.Peek("currentPage"))
+                            {
+                                if ((int)TempData.Peek("currentPage") <= 5)
+                                {
+                                    <li class="page-link" onclick="pageLinkBtn(@Math.Abs(i*9-9))" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+
+                                }
+                                else
+                                {
+                                    if (i == 1)
+                                    {
+                                        <li class="page-link" onclick="pageLinkBtn(@Math.Abs(i*9-9))" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+                                        <li class="page-link disabled" id="@Math.Abs(i*9-9)"><span>...</span></li>
+                                    }
+                                    else if (i >= ((int)TempData.Peek("currentPage") - 2) && i < (int)TempData.Peek("currentPage"))
+                                    {
+                                        <li class="page-link" onclick="pageLinkBtn(@Math.Abs(i*9-9))" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+                                    }
+                                }
+                            }
+                            else if (i > (int)TempData.Peek("currentPage") && i <= ((int)TempData.Peek("currentPage") + 2))
+                            {
+                                <li class="page-link" onclick="pageLinkBtn(@Math.Abs(i*9-9))" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+                            }
+                            else if (i == (int)TempData.Peek("TotalPage"))
+                            {
+                                <li class="page-link disabled" id="@Math.Abs(i*9-9)"><span>...</span></li>
+                                <li class="page-link" onclick="pageLinkBtn(@Math.Abs(i*9-9))" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                @if ((int)TempData.Peek("currentPage") < (int)TempData.Peek("TotalPage"))
+                {
+                    <li class="page-link" onclick="pageLinkBtn(@TempData.Peek("next"))" id="next"><span>Next</span></li>
+
+                }
+                else
+                {
+                    <li class="page-link disabled" id="next"><span>Next</span></li>
+
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.read-more-button').each(function () {
+            var propertyId = $(this).attr('id').split('_')[1];
+            var description = $('#propertyDescription_' + propertyId).text();
+            var maxLength = 100; // Maximum number of characters to show initially
+
+            if (description.length > maxLength) {
+                var shortDescription = description.substr(0, maxLength);
+                var longDescription = description.substr(maxLength);
+
+                $('#propertyDescription_' + propertyId).html(shortDescription + '<span class="dots">...</span><span class="more" style="display: none;">' + longDescription + '</span>');
+                $('#readMoreButton_' + propertyId).show();
+                $('#readLessButton_' + propertyId).hide();
+            }
+        });
+
+        $('.read-more-button').click(function () {
+            var propertyId = $(this).attr('id').split('_')[1];
+            $('#propertyDescription_' + propertyId + ' .dots').toggle();
+            $('#propertyDescription_' + propertyId + ' .more').toggle();
+            $('#readMoreButton_' + propertyId).hide();
+            $('#readLessButton_' + propertyId).show();
+        });
+
+        $('.read-less-button').click(function () {
+            var propertyId = $(this).attr('id').split('_')[1];
+            $('#propertyDescription_' + propertyId + ' .dots').toggle();
+            $('#propertyDescription_' + propertyId + ' .more').toggle();
+            $('#readMoreButton_' + propertyId).show();
+            $('#readLessButton_' + propertyId).hide();
+        });
+
+        // Show Read More button by default
+        $('.read-more-button').show();
+    });
+</script>
+<style>
+    .proerty-th .btn.btn-link {
+        display: none !important;
+    }
+
+</style>

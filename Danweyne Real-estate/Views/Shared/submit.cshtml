@@ -1,0 +1,47 @@
+﻿@using DataAccess.Context;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using System.Security.Claims
+@using Models;
+
+
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+   if ((string)TempData.Peek("UserRole") == "Admin")
+    {
+        
+    <li class="dropdown ymm-sw " data-wow-delay="0.5s">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200" id="navadmin">Admin<b class="caret"></b></a>
+            <ul class="dropdown-menu navbar-nav">
+                <li>
+                    <a href="/Banner/show">Banners</a>
+                </li>
+                <li>
+                    <a href="/Blog/show">Blogs</a>
+                </li>
+                <li>
+                    <a href="/FAQ/AdminShow">FAQ</a>
+                </li> 
+                <li>
+                    <a href="/Contact/showData">Contacts</a>
+                </li>
+                <li>
+                    <a href="/Home/EmailData">Newsletters</a>
+                </li>
+                <li>
+                    <a href="/Properties/show">Properties</a>
+                </li>
+                <li>
+                    <a href="/account/users">Users</a>
+                </li>
+                <li>
+                    <a href="/account/Index">User Register</a>
+                </li>               
+            </ul>
+        </li>
+
+    }
+    }
+

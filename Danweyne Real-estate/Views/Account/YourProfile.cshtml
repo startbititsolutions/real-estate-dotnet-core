@@ -1,0 +1,340 @@
+﻿@model Danweyne_Real_estate.Models.Mapper.ProfileViewModel
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">YOUR PROFILE</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-area user-profiel" style="background-color: #FCFCFC;">
+    &nbsp;
+    <div class="container">
+       
+          
+           
+                <form asp-action="YourProfile" asp-controller="Account" method="post" enctype="multipart/form-data" id="updateProfileForm">
+                   @*<input asp-for="File" type="file" class="form-control" id="cover_image" accept="image/png, image/gif, image/jpeg, image/jpg">
+                    <span id="wizard-error" class="text-danger"></span>*@
+                    <div class="profiel-header">
+                        <h3>
+
+                            This information will let us know more about you.
+                        </h3>
+                        <hr>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        @if (Model.imgurl == null)
+                                        {
+                                         <p>No image available</p>
+                                        }
+                                         else
+                                         {
+                                <img src="/@Model.imgurl" class="picture-src" id="wizardPicturePreview" style="height: 156px;">
+                                          }
+                                        <input asp-for="File" type="file" id="wizard-picture" accept="image/png, image/gif, image/jpeg, image/jpg">
+                                         <span id="wizard-error" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                     <label asp-for="Facebookurl">Facebook:</label>
+                                    <input asp-for="Facebookurl" type="text" class="form-control" placeholder="https://facebook.com/user" value="@Model.Facebookurl" id="Facebook">
+                                     <span id="Facebookerror" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="twitterurl">Twitter:</label>
+                                    <input asp-for="twitterurl" value="@Model.twitterurl" type="text" class="form-control" placeholder="https://Twitter.com/user" id="Twitter">
+                                 <span id="Twittererror" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="googleurl">Google Url:</label>
+                                     <input asp-for="googleurl" value="@Model.googleurl" type="text" class="form-control" placeholder="https://Google.com/" id="Google">
+                                     <span id="Googleerror" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Address">Address:</label>
+                                    <textarea asp-for="Address" class="form-control" placeholder=" Address.." id="Address" rows="3">@Model.Address</textarea>
+                                    <span id="Addresserror" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <label asp-for="linkedinurl">LinkedIn Url:</label>
+                                    <input asp-for="linkedinurl" value="@Model.linkedinurl" type="text" class="form-control" placeholder="https://LinkedeIn.com/" id="LinkedIn">
+                                    <span id="LinkedInerror" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber">Phone:</label>
+                            <input asp-for="PhoneNumber" required minLength="0" maxLength="10" value="@Model.PhoneNumber" type="text" class="form-control" placeholder="+1 9090909090" id="Phone">
+                                    <span id="Phoneerror" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="InstagramUrl">Instagram:</label>
+                                    <input asp-for="InstagramUrl" value="@Model.InstagramUrl" type="text" class="form-control" placeholder="https://Instagram.com/" id="Instagram">
+                                    <span id="Instagramerror" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Description">About Us:</label>
+                            <textarea asp-for="Description" class="form-control" placeholder="About us" id="Description" rows="3">@Model.Description</textarea>
+                                    <span id="Descriptionerror" class="text-danger"></span>
+                                    <input asp-for="imgurl" value="@Model.imgurl" hidden />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                <div class="col-sm-2 col-sm-offset-1" style="margin-left:570px">
+                            <hr>
+                            <input type="submit" class="btn btn-finish btn-primary" id="probtn" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div><!-- end row -->
+    
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@*<script>
+    function IsValidTwitterUrl(url) {
+        var twitterPattern = /^(?:https?:\/\/)?(?:www\.)?twitter\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return twitterPattern.test(url);
+    }
+    function IsValidFacebookUrl(url) {
+        var facebookPattern = /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return facebookPattern.test(url);
+    }
+    function IsValidLinkedinUrl(url) {
+        var linkedinPattern = /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return linkedinPattern.test(url);
+    }
+    function IsValidInstagramUrl(url) {
+        var instagramPattern = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+        // Check if the URL matches the pattern
+        return instagramPattern.test(url);
+    }
+    function IsValidGoogleUrl(url) {
+        var googlePattern = /^(?:https?:\/\/)?(?:www\.)?google\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return googlePattern.test(url);
+    }
+    // Client-side validation for the profile form
+    $(document).ready(function () {
+        $('#probtn').click(function (e) {
+            e.preventDefault(); // Prevent form submission if validation fails
+
+            // Clear previous error messages
+            $('.text-danger').text('');
+
+            // Perform client-side validation
+            var isValid = true;
+
+            // Validate Facebook URL
+
+            // Validate Address field
+            var address = $('#Address').val();
+            if (!address) {
+                $('#Addresserror').text('Address is required');
+                isValid = false;
+            }
+
+            // Validate PhoneNumber field
+            var phoneNumber = $('#Phone').val();
+            if (!phoneNumber) {
+                $('#Phoneerror').text('Phone Number is required');
+                isValid = false;
+            }
+
+            // Validate Description field
+            var description = $('#Description').val();
+            if (!description) {
+                $('#Descriptionerror').text('Description is required');
+                isValid = false;
+            }
+            var twitterUrl = $('#Twitter').val();
+            if (twitterUrl && !IsValidUrl(twitterUrl)) {
+                $('#Twittererror').text('Please provide a valid Twitter URL (e.g., https://twitter.com/username)');
+                isValid = false;
+            }
+
+            var facebookUrl = $('#Facebook').val();
+            if (facebookUrl && !IsValidUrl(facebookUrl)) {
+                $('#Facebookerror').text('Please provide a valid Facebook URL (e.g., https://facebook.com/username)');
+                isValid = false;
+            }
+            var instagramUrl = $('#Instagram').val();
+            if (instagramUrl && !IsValidUrl(instagramUrl)) {
+                $('#Instagramerror').text('Please provide a valid Instagram URL (e.g., https://instagram.com/username)');
+                isValid = false;
+            }
+            var linkedinUrl = $('#LinkedIn').val();
+            if (linkedinUrl && !IsValidUrl(linkedinUrl)) {
+                $('#LinkedInerror').text('Please provide a valid LinkedIn URL (e.g., https://linkedin.com/in/username)');
+                isValid = false;
+            }
+            var googleUrl = $('#Google').val();
+            if (googleUrl && !IsValidUrl(googleUrl)) {
+                $('#Googleerror').text('Please provide a valid Google URL (e.g., https://google.com)');
+                isValid = false;
+            }
+            var fileInput = $('#wizard-picture');
+            var file = fileInput[0].files[0];
+
+            if (!file && !$('#wizardPicturePreview').attr('src')) {
+                $('#wizard-error').text('Image is required');
+                isValid = false;
+            } else if (file) {
+                var validExtensions = ['image/png', 'image/gif', 'image/jpeg', 'image/jpg'];
+                var fileSize = file.size;
+                var fileType = file.type;
+
+                if (!validExtensions.includes(fileType)) {
+                    $('#wizard-error').text('Please select a valid image (PNG, GIF, JPEG, JPG)');
+                    isValid = false;
+                }
+            }
+
+
+            if (isValid) {
+                // Submit the form if validation passes
+                $('#updateProfileForm').submit();
+            }
+        });
+
+    });
+</script>*@
+
+<script>
+    function IsValidTwitterUrl(url) {
+        var twitterPattern = /^(?:https?:\/\/)?(?:www\.)?twitter\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return twitterPattern.test(url);
+    }
+    function IsValidFacebookUrl(url) {
+        var facebookPattern = /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return facebookPattern.test(url);
+    }
+    function IsValidLinkedinUrl(url) {
+        var linkedinPattern = /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return linkedinPattern.test(url);
+    }
+    function IsValidInstagramUrl(url) {
+        var instagramPattern = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+        // Check if the URL matches the pattern
+        return instagramPattern.test(url);
+    }
+    function IsValidGoogleUrl(url) {
+        var googlePattern = /^(?:https?:\/\/)?(?:www\.)?google\.com\/?([a-zA-Z0-9_]+\/?)?$/;
+
+        // Check if the URL matches the pattern
+        return googlePattern.test(url);
+    }
+    // Client-side validation for the profile form
+    $(document).ready(function () {
+        $('#probtn').click(function (e) {
+            e.preventDefault(); // Prevent form submission if validation fails
+
+            // Clear previous error messages
+            $('.text-danger').text('');
+
+            // Perform client-side validation
+            var isValid = true;
+
+            // Validate Address field
+            var address = $('#Address').val();
+            if (!address) {
+                $('#Addresserror').text('Address is required');
+                isValid = false;
+            }
+
+            // Validate PhoneNumber field
+            var phoneNumber = $('#Phone').val();
+            if (!phoneNumber) {
+                $('#Phoneerror').text('Phone number is required');
+                isValid = false;
+            } else if (!/^\d+$/.test(phoneNumber)) {
+                $('#Phoneerror').text('Phone number must be numeric');
+                isValid = false;
+            }
+           
+
+            // Validate Description field
+            var description = $('#Description').val();
+            if (!description) {
+                $('#Descriptionerror').text('Description is required');
+                isValid = false;
+            }
+
+            var twitterUrl = $('#Twitter').val();
+            if (twitterUrl && !IsValidTwitterUrl(twitterUrl)) {
+                $('#Twittererror').text('Please provide a valid Twitter URL (e.g, https://twitter.com/username)');
+                isValid = false;
+            }
+
+            var facebookUrl = $('#Facebook').val();
+            if (facebookUrl && !IsValidFacebookUrl(facebookUrl)) {
+                $('#Facebookerror').text('Please provide a valid Facebook URL(e.g, https://facebook.com/username)');
+                isValid = false;
+            }
+
+            var instagramUrl = $('#Instagram').val();
+            if (instagramUrl && !IsValidInstagramUrl(instagramUrl)) {
+                $('#Instagramerror').text('Please provide a valid Instagram URL(e.g, https://instagram.com/username)');
+                isValid = false;
+            }
+
+            var googleUrl = $('#Google').val();
+            if (googleUrl && !IsValidGoogleUrl(googleUrl)) {
+                $('#Googleerror').text('Please provide a valid Google URL( e.g, https://google.com)');
+                isValid = false;
+            }
+
+            var linkedInUrl = $('#LinkedIn').val();
+            if (linkedInUrl && !IsValidLinkedinUrl(linkedInUrl)) {
+                $('#LinkedInerror').text(' Please provide a valid LinkedIn URL(e.g, https://linkedin.com/in/username)');
+                isValid = false;
+            }
+            var fileInput = $('#wizard-picture');
+            var file = fileInput[0].files[0];
+
+            if (!file && !$('#wizardPicturePreview').attr('src')) {
+                $('#wizard-error').text('Image is required');
+                isValid = false;
+            } else if (file) {
+                var validExtensions = ['image/png', 'image/gif', 'image/jpeg', 'image/jpg'];
+                var fileSize = file.size;
+                var fileType = file.type;
+
+                if (!validExtensions.includes(fileType)) {
+                    $('#wizard-error').text('Please select a valid image (PNG, GIF, JPEG, JPG)');
+                    isValid = false;
+                }
+            }
+            if (isValid) {
+                // Submit the form if validation passes
+                $('#updateProfileForm').submit();
+            }
+        });
+    });
+</script>

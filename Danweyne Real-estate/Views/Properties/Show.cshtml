@@ -1,0 +1,257 @@
+﻿@model IEnumerable<propertymodelview>
+
+@{
+    ViewData["Title"] = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+
+    .delete-button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        font-size: 20px;
+        color: orangered;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+        .delete-button:hover {
+            color: red;
+        }
+
+    .edit-button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        font-size: 20px;
+        color: #007bff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+        .edit-button:hover {
+            color: #0056b3;
+        }
+
+    .button-icon {
+        margin-right: 15px;
+    }
+
+    .summary-text {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
+
+    .agent {
+        display: inline-block;
+        margin-bottom: 5px;
+        font-weight: 700;
+        margin-top: 54px;
+        font-size: 16px;
+    }
+
+    .btn-group > .btn:first-child {
+        margin-left: -180px;
+        margin-top: 50px;
+    }
+
+    .bootstrap-select.btn-group .dropdown-menu {
+        min-width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-left: -185px;
+    }
+
+    .selectpicker {
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555555;
+        background-color: #ffffff;
+        background-image: none;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        width: fit-content; /* Set the width to fit the content */
+    }
+
+        .selectpicker + .dropdown.bootstrap-select .dropdown-menu {
+            width: 100% !important;
+            left: auto !important;
+            right: 0 !important;
+        }
+
+        .selectpicker:focus {
+            border-color: #66afe9;
+            outline: 0;
+            box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+        }
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">
+                    Properties 
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div>
+    <label for="agentSelect">Select Agent:</label>
+    <select id="agentSelect" class="btn-group bootstrap-select" style="width: 200px; padding: 5px;">
+        <option value="">All Agents</option>
+        @foreach (var agent in Model.SelectMany(p => p.Users).Distinct())
+        {
+            <option value="@agent.UserName">@agent.UserName</option>
+        }
+    </select>
+</div>
+*@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="agentSelect" class="agent">Dooro Wakiil:</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <select name="City" id="agentSelect" class="selectpicker custom-select" data-live-search="true" data-live-search-style="begins" title="Dhammaan Wakiilada">
+                    @foreach (var agent in Model.SelectMany(p => p.Users).Distinct())
+                    {
+                        <option value="@agent.UserName">@agent.UserName</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="container">
+    <br />
+   
+    <div id="propertiesTableContainer">
+        @Html.Partial("_PropertiesTable", Model)
+    </div>
+</div>
+<div id="confirmationModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmationMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a id="confirmationLink" href="#" class="btn btn-primary">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            // Handle the "Enable" button click event
+            $(document).on('click', '.enable-btn', function (e) {
+                e.preventDefault();
+                var propertyId = $(this).data('property-id');
+                console.log(propertyId);
+                var confirmationMessage = 'Are you sure you want to enable this property?';
+
+                // Update the modal with the confirmation message and link
+                $('#confirmationMessage').text(confirmationMessage);
+                $('#confirmationLink').attr('href', '/Properties/EnableProperty?propertyId=' + propertyId);
+
+                // Show the modal
+                $('#confirmationModal').modal('show');
+            });
+
+            // Handle the "Disable" button click event
+            $(document).on('click', '.disable-btn', function (e) {
+                e.preventDefault();
+                var propertyId = $(this).data('property-id');
+                var confirmationMessage = 'Are you sure you want to disable this property?';
+
+                // Update the modal with the confirmation message and link
+                $('#confirmationMessage').text(confirmationMessage);
+                $('#confirmationLink').attr('href', '/Properties/DisableProperty?propertyId=' + propertyId);
+
+                // Show the modal
+                $('#confirmationModal').modal('show');
+            });
+
+            var dataTable;
+
+            initializeDataTable();
+
+            $('#agentSelect').change(function () {
+                filterProperties();
+            });
+
+            function initializeDataTable() {
+                dataTable = $('#propertiesTable').DataTable({
+                    "paging": true,
+                    "ordering": true,
+                    "info": true
+                });
+            }
+
+            function filterProperties() {
+                var selectedUserId = $('#agentSelect').val();
+                $.ajax({
+                    url: '@Url.Action("FilterProperties", "Properties")',
+                    type: 'POST',
+                    data: { userId: selectedUserId },
+                    success: function (result) {
+                        $('#propertiesTableContainer').html(result);
+                        destroyDataTable(); 
+                        initializeDataTable(); 
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            function destroyDataTable() {
+                if (dataTable) {
+                    dataTable.destroy();
+                    dataTable = null;
+                }
+            }
+            $('#confirmationLink').on('click', function () {
+                var button = $(this);
+                button.text('Processing...');
+
+                // Delay the button state change to show the processing message
+                setTimeout(function () {
+                    button.text('Disable').removeClass('enable-btn').addClass('disable-btn');
+                }, 500); // Change the delay as needed
+
+                // Hide the modal after the button state change
+                $('#confirmationModal').modal('hide');
+            });
+     
+        });
+    </script>
+}
+

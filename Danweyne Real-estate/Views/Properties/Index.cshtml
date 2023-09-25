@@ -1,0 +1,954 @@
+﻿@model IEnumerable< Models.Database_Models.Property>
+@{
+    ViewData["Title"] = "PROPERTIES";
+    Dictionary<string, string> FormData = (Dictionary<string, string>)TempData["FormData"];
+}
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Properties </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+<!-- property area -->
+<div class="properties-area recent-property" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3 p0 padding-top-40">
+                <div class="blog-asside-right pr0">
+
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Smart search</h3>
+                        </div>
+                        @if (ViewBag.BedRoomsMax != null)
+                        {
+                            <div class="panel-body search-widget">
+                                @if (FormData != null)
+                                {
+                                    <form action="" id="FilterForm" class=" form-inline">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <input type="text" class="form-control" id="KeyWord" placeholder="Key word" value="@FormData["KeyWord"]">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="">
+                                                        <select id="City" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City" tabindex="-98">
+                                                            <option class="bs-title-option" id="City" selected="@FormData["City"]" value="@FormData["City"]">@FormData["City"]</option>
+                                                            <option value="">-City-</option>
+                                                            @foreach (var item in ViewBag.Cities)
+                                                            {
+                                                                <option>@item.CityName</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+
+                                                    <div class="">
+                                                        <select id="Status" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City" tabindex="-98">
+                                                            <option class="bs-title-option" value="@FormData["Status"]">@FormData["Status"]</option>
+                                                            <option value="">-Status-</option>
+                                                            @foreach (var item in ViewBag.Status)
+                                                            {
+                                                                <option>@item.StatusName</option>
+
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <label for="price-range">Price range ($):</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        <div class="tooltip top" style="top: -26px; left: 12.625px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.PropertyPriceMax.PropertyPrice)</div>
+                                                        </div>
+                                                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.PropertyPriceMax.PropertyPrice)" data-slider-step="1000" data-slider-value="[@FormData["PriceRange"].ToString()]" id="price-range" style="">
+                                                    </div>
+                                                    <br>
+                                                    <b class="pull-left color">0$</b>
+                                                    <b class="pull-right color">@(ViewBag.PropertyPriceMax.PropertyPrice)$</b>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <label for="property-geo">Property geo (m2) :</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        <div class="tooltip top" style="top: -26px; left: 14.0833px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.AreaMax.Area)</div>
+                                                        </div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.AreaMax.Area)" data-slider-step="5" data-slider-value="[@FormData["PropertyGeo"].ToString()]" id="property-geo" style="">
+                                                    </div>
+                                                    <br>
+                                                    <b class="pull-left color">0m2</b>
+                                                    <b class="pull-right color">@(ViewBag.AreaMax.Area)m2</b>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <label for="BathroomRange">Min baths :</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        @*<div class="slider-track"><div class="slider-selection" style="left: 41.6667%; width: 33.3333%;"></div><div class="slider-handle round left-round" style="left: 41.6667%;"></div><div class="slider-handle round" style="left: 75%;"></div>
+                                                </div>*@
+                                                        <div class="tooltip top" style="top: -26px; left: 29.9167px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.BathRoomsMax.BathRooms)</div>
+                                                        </div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.BathRoomsMax.BathRooms)" data-slider-step="5" data-slider-value="[@FormData["BathRoomsRange"].ToString()]" id="min-baths" style="">
+                                                    </div><br>
+                                                    <b class="pull-left color">0</b>
+                                                    <b class="pull-right color">@(ViewBag.BathRoomsMax.BathRooms)</b>
+                                                </div>
+
+                                                <div class="col-xs-6">
+                                                    <label for="BedRoomRange">Min bed :</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        @*<div class="slider-track"><div class="slider-selection" style="left: 41.6667%; width: 33.3333%;"></div><div class="slider-handle round left-round" style="left: 41.6667%;"></div><div class="slider-handle round" style="left: 75%;"></div></div>*@
+                                                        <div class="tooltip top" style="top: -26px; left: 29.9167px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.BedRoomsMax.BedRooms)</div>
+                                                        </div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.BedRoomsMax.BedRooms)" data-slider-step="5" data-slider-value="[@FormData["BedRoomsRange"].ToString()]" id="min-bed" style="">
+                                                    </div><br>
+                                                    <b class="pull-left color">0</b>
+                                                    <b class="pull-right color">@(ViewBag.BedRoomsMax.BedRooms)</b>
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["FirePlace"] == "true")
+                                                            {
+                                                                <input id="FirePlace" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="FirePlace" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                                            }
+
+                                                            @*<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+
+                                                    </ins>*@
+                                                            <span>Fire Place</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["DualSinks"] == "true")
+                                                            {
+                                                                <input id="DualSinks" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Dual Sinks</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="DualSinks" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Dual Sinks</span>
+                                                            }
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["SwimmingPool"] == "true")
+                                                            {
+                                                                <input id="SwimmingPool" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Swimming Pool</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="SwimmingPool" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Swimming Pool</span>
+                                                            }
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="Stories" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>2 Stories</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["LaundryRoom"] == "true")
+                                                            {
+                                                                <input id="LaundryRoom" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Laundry Room</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="LaundryRoom" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Laundry Room</span>
+                                                            }
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["EmergencyExit"] == "true")
+                                                            {
+                                                                <input id="EmergencyExit" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Emergency Exit</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="EmergencyExit" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Emergency Exit</span>
+                                                            }
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["JogPath"] == "true")
+                                                            {
+                                                                <input id="JogPath" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Jog Path</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="JogPath" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Jog Path</span>
+                                                            }
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["Ceilings"] == "true")
+                                                            {
+                                                                <input id="Ceilings" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>26' Ceilings</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="Ceilings" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>26' Ceilings</span>
+                                                            }
+
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (FormData["HurricaneShutters"] == "true")
+                                                            {
+                                                                <input id="HurricaneShutters" type="checkbox" checked="true" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Hurricane Shutters</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <input id="HurricaneShutters" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Hurricane Shutters</span>
+                                                            }
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <input class="button btn largesearch-btn" id="Filter" type="submit" value="Search">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form action="" id="FilterForm" class=" form-inline">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <input type="text" class="form-control" id="KeyWord" placeholder="Key word">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="">
+                                                        <select id="City" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City" tabindex="-98">
+                                                            <option class="bs-title-option" id="City" value="">-Select City-</option>
+                                                            <option value="">-Cities-</option>
+                                                            @foreach (var item in ViewBag.Cities)
+                                                            {
+                                                                <option>@item.CityName</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+
+                                                    <div class="">
+                                                        <select id="Status" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City" tabindex="-98">
+                                                            <option class="bs-title-option" id="City" value="">-Status-</option>
+                                                            <option value="">-Status-</option>
+                                                            @foreach (var item in ViewBag.Status)
+                                                            {
+                                                                <option>@item.StatusName</option>
+
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <label for="price-range">Price range ($):</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        <div class="tooltip top" style="top: -26px; left: 12.625px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.PropertyPriceMax.PropertyPrice)</div>
+                                                        </div>
+                                                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.PropertyPriceMax.PropertyPrice)" data-slider-step="1000" data-slider-value="[0,@(ViewBag.PropertyPriceMax.PropertyPrice)]" id="price-range" style="">
+                                                    </div>
+                                                    <br>
+                                                    <b class="pull-left color">0$</b>
+                                                    <b class="pull-right color">@(ViewBag.PropertyPriceMax.PropertyPrice)$</b>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <label for="property-geo">Property geo (m2) :</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        <div class="tooltip top" style="top: -26px; left: 14.0833px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.AreaMax.Area)</div>
+                                                        </div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.AreaMax.Area)" data-slider-step="5" data-slider-value="[0,@(ViewBag.AreaMax.Area)]" id="property-geo" style="">
+                                                    </div>
+                                                    <br>
+                                                    <b class="pull-left color">0m2</b>
+                                                    <b class="pull-right color">@(ViewBag.AreaMax.Area)m2</b>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <label for="BathroomRange">Min baths :</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        @*<div class="slider-track"><div class="slider-selection" style="left: 41.6667%; width: 33.3333%;"></div><div class="slider-handle round left-round" style="left: 41.6667%;"></div><div class="slider-handle round" style="left: 75%;"></div>
+                                                </div>*@
+                                                        <div class="tooltip top" style="top: -26px; left: 29.9167px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.BathRoomsMax.BathRooms)</div>
+                                                        </div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.BathRoomsMax.BathRooms)" data-slider-step="5" data-slider-value="[0,@(ViewBag.BathRoomsMax.BathRooms)]" id="min-baths" style="">
+                                                    </div><br>
+                                                    <b class="pull-left color">0</b>
+                                                    <b class="pull-right color">@(ViewBag.BathRoomsMax.BathRooms)</b>
+                                                </div>
+
+                                                <div class="col-xs-6">
+                                                    <label for="BedRoomRange">Min bed :</label>
+                                                    <div class="sliderrange slider slider-horizontal" style="width: 119px;">
+                                                        @*<div class="slider-track"><div class="slider-selection" style="left: 41.6667%; width: 33.3333%;"></div><div class="slider-handle round left-round" style="left: 41.6667%;"></div><div class="slider-handle round" style="left: 75%;"></div></div>*@
+                                                        <div class="tooltip top" style="top: -26px; left: 29.9167px;">
+                                                            <div class="tooltip-arrow"></div>
+                                                            <div class="tooltip-inner">0 : @(ViewBag.BedRoomsMax.BedRooms)</div>
+                                                        </div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="@(ViewBag.BedRoomsMax.BedRooms)" data-slider-step="5" data-slider-value="[0,@(ViewBag.BedRoomsMax.BedRooms)]" id="min-bed" style="">
+                                                    </div><br>
+                                                    <b class="pull-left color">0</b>
+                                                    <b class="pull-right color">@(ViewBag.BedRoomsMax.BedRooms)</b>
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+
+                                                            <input id="FirePlace" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                                            @*<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+
+                                                    </ins>*@
+                                                            <span>Fire Place</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="DualSinks" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Dual Sinks</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="SwimmingPool" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Swimming Pool</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="Stories" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>2 Stories</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="LaundryRoom" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Laundry Room</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="EmergencyExit" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Emergency Exit</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="JogPath" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Jog Path</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="Ceilings" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>26' Ceilings</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="padding-5">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="HurricaneShutters" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">    <span>Hurricane Shutters</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <input class="button btn largesearch-btn" id="Filter" type="submit" value="Search">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                }
+
+                            </div>
+                        }
+                        else
+                        {
+
+                        }
+
+                    </div>
+
+
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                        @* <div class="panel-heading">
+                        <h3 class="panel-title">Recommended</h3>
+                        </div>*@
+                        @* <div class="panel-body recent-property-widget">
+                        <ul>
+                        <li>
+                        <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                        <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
+                        <span class="property-seeker">
+                        <b class="b-1">A</b>
+                        <b class="b-2">S</b>
+                        </span>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                        <h6> <a href="single.html">Super nice villa </a></h6>
+                        <span class="property-price">3000000$</span>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="col-md-3 col-sm-3  col-xs-3 blg-thumb p0">
+                        <a href="single.html"><img src="assets/img/demo/small-property-1.jpg"></a>
+                        <span class="property-seeker">
+                        <b class="b-1">A</b>
+                        <b class="b-2">S</b>
+                        </span>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                        <h6> <a href="single.html">Super nice villa </a></h6>
+                        <span class="property-price">3000000$</span>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                        <a href="single.html"><img src="assets/img/demo/small-property-3.jpg"></a>
+                        <span class="property-seeker">
+                        <b class="b-1">A</b>
+                        <b class="b-2">S</b>
+                        </span>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                        <h6> <a href="single.html">Super nice villa </a></h6>
+                        <span class="property-price">3000000$</span>
+                        </div>
+                        </li>
+
+                        <li>
+                        <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                        <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
+                        <span class="property-seeker">
+                        <b class="b-1">A</b>
+                        <b class="b-2">S</b>
+                        </span>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                        <h6> <a href="single.html">Super nice villa </a></h6>
+                        <span class="property-price">3000000$</span>
+                        </div>
+                        </li>
+
+                        </ul>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="col-md-9  pr0 padding-top-40 properties-page">
+                <div class="col-md-12 clear">
+                    <div class="col-xs-10 page-subheader sorting pl0">
+                        <ul class="sort-by-list">
+                            <li class="" id="PropertyDate">
+                                <a class="order_by_date" data-orderby="property_date" data-order="ASC">
+                                    Property Date <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </li>
+                            <li class="" id="PropertyPrice">
+                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
+                                    Property Price <i class="fa fa-sort-numeric-desc"></i>
+                                </a>
+                            </li>
+                        </ul><!--/ .sort-by-list-->
+                        @*<div class="items-per-page">
+                        <label for="items_per_page"><b>Property per page :</b></label>
+                        <div class="sel">
+                        <select id="items_per_page" name="per_page">
+                        <option value="3">3</option>
+                        <option value="6">6</option>
+                        <option value="9">9</option>
+                        <option selected="selected" value="12">12</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        <option value="60">60</option>
+                        </select>
+                        </div><!--/ .sel-->
+                        </div><!--/ .items-per-page-->*@
+                    </div>
+
+                    <div class="col-xs-2 layout-switcher">
+                        <a id="layout-list" class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
+                        <a id="layout-grid" class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
+                    </div><!--/ .layout-switcher-->
+                </div>
+                <div id="wifi-loader" class="centered-loader ">
+                    <svg class="circle-outer" viewBox="0 0 86 86">
+                        <circle class="back" cx="43" cy="43" r="40"></circle>
+                        <circle class="front" cx="43" cy="43" r="40"></circle>
+                        <circle class="new" cx="43" cy="43" r="40"></circle>
+                    </svg>
+                    <svg class="circle-middle" viewBox="0 0 60 60">
+                        <circle class="back" cx="30" cy="30" r="27"></circle>
+                        <circle class="front" cx="30" cy="30" r="27"></circle>
+                    </svg>
+                    <svg class="circle-inner" viewBox="0 0 34 34">
+                        <circle class="back" cx="17" cy="17" r="14"></circle>
+                        <circle class="front" cx="17" cy="17" r="14"></circle>
+                    </svg>
+                    <div class="text" data-text="Searching"></div>
+                </div>
+
+               <div class="col-md-12 clear">
+                    <div id="list-type" class="proerty-th">
+                        <div id="listContainer">
+                            @Html.Partial("PropertyList", Model)
+                        </div>
+                    </div>
+
+                </div>
+                @* <div class="col-md-12 clear">
+                <div id="list-type" class="proerty-th">
+                <div id="listContainer">
+
+                @Html.Partial("PropertyList", Model)
+                </div>
+
+
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                <div class="pull-right">
+                <div class="pagination">
+                <ul>
+                <li><a href="#">Prev</a></li>
+                @for (var i = 1; i <= @ViewBag.totalpage; i++)
+                {
+                if (i != (int)TempData.Peek("Offset") )
+                {
+                if (ViewBag.totalpage > 10)
+                {
+                if (i <= ((int)TempData.Peek("Offset") + 3))
+                {
+                <li class="page-link" id="@Math.Abs(i*9-9)">@i</li>
+                }
+                else if (ViewBag.totalpage==i)
+                {
+                <li>...</li>
+                <li class="page-link" id="@Math.Abs(i*9-9)">@i</li>
+                }
+                }
+                else
+                {
+                <li class="page-link" id="@Math.Abs(i*9-9)"><span>@i</span></li>
+                }
+                }
+                }
+                <li><a href="#">Next</a></li>
+                </ul>
+                </div>
+                </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function pageLinkBtn(id) {
+            $("#wifi-loader").show();
+            $("#listContainer").hide();
+            var formData = new FormData();
+            console.log($('#price-range'))
+            formData.append("KeyWord", $('#KeyWord')[0].value);
+            formData.append("PriceRange", $('#price-range').data('slider').getValue());
+            formData.append("BedRoomsRange", $('#min-bed').data('slider').getValue());
+            formData.append("BathRoomsRange", $('#min-baths').data('slider').getValue());
+            formData.append("City", $('#City')[0].value)
+            formData.append("Status", $('#Status')[0].value)
+            formData.append("PropertyGeo", $('#property-geo').data('slider').getValue())
+            formData.append("FirePlace", $('#FirePlace')[0].checked)
+            formData.append("DualSinks", $('#DualSinks')[0].checked)
+            formData.append("SwimmingPool", $('#SwimmingPool')[0].checked)
+            formData.append("Stories", $('#Stories')[0].checked)
+            formData.append("LaundryRoom", $('#LaundryRoom')[0].checked)
+            formData.append("EmergencyExit", $('#EmergencyExit')[0].checked)
+            formData.append("JogPath", $('#JogPath')[0].checked)
+            formData.append("Ceilings", $('#Ceilings')[0].checked)
+            formData.append("HurricaneShutters", $('#HurricaneShutters')[0].checked)
+            formData.append("Offset", id)
+            if ($("#PropertyDate")[0].classList[0] == "active") {
+                formData.append("PropertyDate", true)
+            }
+            else {
+                formData.append("PropertyDate", false)
+            }
+            if ($("#PropertyPrice")[0].classList[0] == "active") {
+                formData.append("PropertyPrice", true)
+            }
+            else {
+                formData.append("PropertyPrice", false)
+            }
+            $.ajax({
+                url: '/Properties/PropertyList',
+                type: 'POST',
+                data: formData,
+                processData: false, // Prevent jQuery from automatically transforming the data
+                contentType: false, // Prevent jQuery from automatically setting the Content-Type header
+                success: function (response) {
+                    $("#listContainer").html(response);
+                    $("#wifi-loader").hide();
+                    $("#listContainer").show();
+                },
+                error: function (xhr, status, error) {
+                    console.log(error)
+                    $("#wifi-loader").hide();
+                    $("#listContainer").show();
+                    // Handle error
+                }
+            });
+        }
+        $(document).ready(function () {
+            $("#wifi-loader").hide();
+           
+            $("#PropertyDate").click(function (e) {
+                //$("#PropertyDate"))[0].classList[0]+="checked"
+                $("#wifi-loader").show();
+                $("#listContainer").hide();
+                if ($("#PropertyDate")[0].classList[0] == "active") {
+                    $("#PropertyDate").removeClass("active")
+                }
+                else {
+                    $("#PropertyDate").addClass("active")
+                }
+                var formData = new FormData();
+                formData.append("KeyWord", $('#KeyWord')[0].value);
+                formData.append("PriceRange", $('#price-range').data('slider').getValue());
+                formData.append("BedRoomsRange", $('#min-bed').data('slider').getValue());
+                formData.append("BathRoomsRange", $('#min-baths').data('slider').getValue());
+                formData.append("City", $('#City')[0].value)
+                formData.append("Status", $('#Status')[0].value)
+                formData.append("PropertyGeo", $('#property-geo').data('slider').getValue())
+                formData.append("FirePlace", $('#FirePlace')[0].checked)
+                formData.append("DualSinks", $('#DualSinks')[0].checked)
+                formData.append("SwimmingPool", $('#SwimmingPool')[0].checked)
+                formData.append("Stories", $('#Stories')[0].checked)
+                formData.append("LaundryRoom", $('#LaundryRoom')[0].checked)
+                formData.append("EmergencyExit", $('#EmergencyExit')[0].checked)
+                formData.append("JogPath", $('#JogPath')[0].checked)
+                formData.append("Ceilings", $('#Ceilings')[0].checked)
+                formData.append("HurricaneShutters", $('#HurricaneShutters')[0].checked)
+                formData.append("Offset", @TempData.Peek("Offset"))
+                if ($("#PropertyDate")[0].classList[0] == "active") {
+                    formData.append("PropertyDate", true)
+                }
+                else {
+                    formData.append("PropertyDate", false)
+                }
+                if ($("#PropertyPrice")[0].classList[0] == "active") {
+                    formData.append("PropertyPrice", true)
+                }
+                else {
+                    formData.append("PropertyPrice", false)
+                }
+                $.ajax({
+                    url: '/Properties/PropertyList',
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Prevent jQuery from automatically transforming the data
+                    contentType: false, // Prevent jQuery from automatically setting the Content-Type header
+                    success: function (response) {
+                        $("#listContainer").html(response);
+                        $("#wifi-loader").hide();
+                        $("#listContainer").show();
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.log(error)
+                        $("#wifi-loader").hide();
+                        $("#listContainer").show();
+                    }
+                });
+
+            })
+            $("#PropertyPrice").click(function (e) {
+                //$("#PropertyDate"))[0].classList[0]+="checked"
+                $("#wifi-loader").show();
+                $("#listContainer").hide();
+                if ($("#PropertyPrice")[0].classList[0] == "active") {
+                    $("#PropertyPrice").removeClass("active")
+                }
+                else {
+                    $("#PropertyPrice").addClass("active")
+                }
+                var formData = new FormData();
+                formData.append("KeyWord", $('#KeyWord')[0].value);
+                formData.append("PriceRange", $('#price-range').data('slider').getValue());
+                formData.append("BedRoomsRange", $('#min-bed').data('slider').getValue());
+                formData.append("BathRoomsRange", $('#min-baths').data('slider').getValue());
+                formData.append("City", $('#City')[0].value)
+                formData.append("Status", $('#Status')[0].value)
+                formData.append("PropertyGeo", $('#property-geo').data('slider').getValue())
+                formData.append("FirePlace", $('#FirePlace')[0].checked)
+                formData.append("DualSinks", $('#DualSinks')[0].checked)
+                formData.append("SwimmingPool", $('#SwimmingPool')[0].checked)
+                formData.append("Stories", $('#Stories')[0].checked)
+                formData.append("LaundryRoom", $('#LaundryRoom')[0].checked)
+                formData.append("EmergencyExit", $('#EmergencyExit')[0].checked)
+                formData.append("JogPath", $('#JogPath')[0].checked)
+                formData.append("Ceilings", $('#Ceilings')[0].checked)
+                formData.append("HurricaneShutters", $('#HurricaneShutters')[0].checked)
+                formData.append("Offset", @TempData.Peek("Offset"))
+                if ($("#PropertyDate")[0].classList[0] == "active") {
+                    formData.append("PropertyDate", true)
+                }
+                else {
+                    formData.append("PropertyDate", false)
+                }
+                if ($("#PropertyPrice")[0].classList[0] == "active") {
+                    formData.append("PropertyPrice", true)
+                }
+                else {
+                    formData.append("PropertyPrice", false)
+                }
+                $.ajax({
+                    url: '/Properties/PropertyList',
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Prevent jQuery from automatically transforming the data
+                    contentType: false, // Prevent jQuery from automatically setting the Content-Type header
+                    success: function (response) {
+                        $("#listContainer").html(response);
+                        $("#wifi-loader").hide();
+                        $("#listContainer").show();
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.log(error)
+                        $("#wifi-loader").hide();
+                        $("#listContainer").show();
+                    }
+                });
+            })
+            $("#FilterForm").submit(function (e) {
+                e.preventDefault();
+                $("#wifi-loader").show();
+                $("#listContainer").hide();
+                var formData = new FormData(this);
+                formData.append("KeyWord", $('#KeyWord')[0].value);
+                formData.append("PriceRange", $('#price-range').data('slider').getValue());
+                formData.append("BedRoomsRange", $('#min-bed').data('slider').getValue());
+                formData.append("BathRoomsRange", $('#min-baths').data('slider').getValue());
+                formData.append("City", $('#City')[0].value)
+                formData.append("Status", $('#Status')[0].value)
+                formData.append("PropertyGeo", $('#property-geo').data('slider').getValue())
+                formData.append("FirePlace", $('#FirePlace')[0].checked)
+                formData.append("DualSinks", $('#DualSinks')[0].checked)
+                formData.append("SwimmingPool", $('#SwimmingPool')[0].checked)
+                formData.append("Stories", $('#Stories')[0].checked)
+                formData.append("LaundryRoom", $('#LaundryRoom')[0].checked)
+                formData.append("EmergencyExit", $('#EmergencyExit')[0].checked)
+                formData.append("JogPath", $('#JogPath')[0].checked)
+                formData.append("Ceilings", $('#Ceilings')[0].checked)
+                formData.append("HurricaneShutters", $('#HurricaneShutters')[0].checked)
+                formData.append("Offset", @TempData.Peek("Offset"))
+                if ($("#PropertyDate")[0].classList[0] == "active") {
+                    formData.append("PropertyDate", true)
+                }
+                else {
+                    formData.append("PropertyDate", false)
+                }
+                if ($("#PropertyPrice")[0].classList[0] == "active") {
+                    formData.append("PropertyPrice", true)
+                }
+                else {
+                    formData.append("PropertyPrice", false)
+                }
+                $.ajax({
+                    url: '/Properties/PropertyList',
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Prevent jQuery from automatically transforming the data
+                    contentType: false, // Prevent jQuery from automatically setting the Content-Type header
+                    success: function (response) {
+                        $("#listContainer").html(response);
+                        $("#wifi-loader").hide();
+                        $("#listContainer").show();
+
+
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.log(error)
+                        $("#wifi-loader").hide();
+                        $("#listContainer").show();
+                    }
+                });
+            });
+            function resetForm() {
+                $("#hdn-student-id").val("");
+                $("#name").val("");
+                $("#email").val("");
+            }
+            function errorCallback() {
+                bootbox.alert("Something went wrong please contact admin.");
+            }
+            function successCallback(response) {
+                if (response.responseCode == 0) {
+                    resetForm();
+                    bootbox.alert(response.responseMessage, function () {
+
+                        //PERFORM REMAINING LOGIC
+                    });
+                }
+                else {
+                    bootbox.alert(response.ResponseMessage);
+                }
+            };
+        });
+    </script>
+                    }

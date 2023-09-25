@@ -1,0 +1,464 @@
+﻿@model Danweyne_Real_estate.Models.AddpropertyViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- property area -->
+<div class="content-area submit-property" style="background-color: #FCFCFC;">
+    &nbsp;
+    <div class="container">
+        <div class="clearfix">
+            <div class="wizard-container">
+
+                <div class="wizard-card ct-wizard-orange" id="wizardProperty">
+                    <script>
+                        function TermsCheck(event) {
+                            if ($('#property_from')[0][30].checked != true) {
+                                $("#errorterm").show();
+                                $("#errorterm").html("Please agree to our terms and condition");
+                                event.preventDefault();
+                            }
+                            else{
+                                $("#errorterm").hide();
+                            }
+                        }
+
+                    </script>
+
+                    <form action="Add" method="post" enctype="multipart/form-data" id="property_from" onsubmit="TermsCheck(event)" data-val="true">
+
+                        <div class="wizard-header">
+                            <h3>
+                                <b>Diwaan Geli</b> Gurigaga ama Binodada <br>
+                                <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
+                            </h3>
+                        </div>
+
+                        <ul>
+                            <li><a href="#step1" data-toggle="tab">Step 1 </a></li>
+                            <li><a href="#step2" data-toggle="tab">Step 2 </a></li>
+                            <li><a href="#step3" data-toggle="tab">Step 3 </a></li>
+                            <li><a href="#step4" data-toggle="tab">Finished </a></li>
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <div class="tab-pane" id="step1">
+                                <div class="row p-b-15  ">
+                                    <h4 class="info-text" style="margin-left:15px"> Let's start with the basic information (with validation)</h4>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                                                <input asp-for=File required id="cover_image" accept="image/png, image/gif, image/jpeg, image/jpg">
+                                                <span asp-validation-for="File" class="text-danger"></span>
+                                                <span id="ImageValidation" class="text-danger" style="display:none">Invalid Image(Extenions allowed-:jpeg,gif,png,jpg)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label asp-for="Name">Property Name <small>(required)</small></label>
+                                            <input asp-for=Name type="text" required minLength="2"  class="form-control" placeholder="Super villa ..." id="Name">
+                                            <span id="Name-validation-msg" class="text-danger" style="display: none;">@*Maximum length exceeded (60 characters)*@</span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for=Price>Property Price <small>(required)</small></label>
+                                            <input asp-for=Price type="number" required min="0" max="9999999" class="form-control" placeholder="3330000">
+                                        </div>
+                                        <div class="form-group">
+                                            @*  <label asp-for="User.PhoneNumber">Telephone <small>(empty if you wanna use default phone number)</small></label>
+                                            <input asp-for=User.PhoneNumber type="text" required class="form-control" placeholder="+46738088483">*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  End step 1 -->
+
+                            <div class="tab-pane" id="step2">
+                                <h4 class="info-text"> How much your Property is Beautiful ? </h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label asp-for="Description">Property Description </label>
+                                                <textarea asp-for=Description required class="form-control" placeholder="Property description..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        @*                              <div class="col-sm-3">
+                                        <div class="form-group">
+                                        <label asp-for="State">Gobolka: Binodada :</label>
+                                        <select asp-for=State id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your State" required>
+                                        <option>Hargeysa</option>
+                                        <option>Garoowe</option>
+                                        <option>Laascaanood</option>
+                                        <option>Dhusamareeb</option>
+                                        <option>Kismaayo</option>
+                                        </select>
+                                        </div>
+                                        </div>*@
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label asp-for="City">City</label>
+                                                <select name="City" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city" required>
+                                                    @foreach (var item in ViewBag.City)
+                                                    {
+                                                        <option value="@item.CityId">@item.CityName</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label asp-for="Status">How do you want </label>
+                                                <select asp-for=Status id="basic" class="selectpicker show-tick form-control" required>
+                                                    @foreach (var item in ViewBag.Status)
+                                                    {
+                                                        <option value="@item.StatusId">@item.StatusName</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label asp-for="Catagory">How do you want </label>
+                                                <select asp-for=Catagory id="basic" class="selectpicker show-tick form-control" required>
+                                                    @foreach (var item in ViewBag.Catagory)
+                                                    {
+                                                        <option value="@item.CatgoryId">@item.CatgoryName</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label asp-for="Garage"></label>
+                                                <input asp-for="Garage" class="form-control" type="number" required placeholder="0"/>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12 padding-top-15">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label asp-for=Beds for="property-geo">Min bed </label>
+                                                <input asp-for=Beds type="text" class="span2" value="250,450" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" required id="min-bed"> <br />
+                                                <b class="pull-left color">1</b>
+                                                <b class="pull-right color">120</b>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+
+                                            <div class="form-group">
+                                                <label asp-for="Baths" for="price-range">Min baths </label>
+                                                <input asp-for="Baths" type="text" class="span2" value="250,450" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" required id="min-baths"><br />
+                                                <b class="pull-left color">1</b>
+                                                <b class="pull-right color">120</b>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+
+                                            <div class="form-group">
+                                                <label asp-for=Area for="property-geo">Property geo (m2) </label>
+                                                <input asp-for="Area" type="text" class="span2" value="50,450" data-slider-min="0" data-slider-max="600" data-slider-step="5" required data-slider-value="[50,450]" id="property-geo"><br />
+                                                <b class="pull-left color">40m</b>
+                                                <b class="pull-right color">12000m</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 padding-top-15">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.SwimmingPool">
+                                                        <input asp-for="Features.SwimmingPool" type="checkbox"> Swimming Pool
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.Stories">
+                                                        <input asp-for=Features.Stories type="checkbox"> 2 Stories
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.EmergencyExit">
+                                                        <input asp-for=Features.EmergencyExit type="checkbox"> Emergency Exit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.FirePlace">
+                                                        <input asp-for=Features.FirePlace type="checkbox"> Fire Place
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 padding-bottom-15">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.LaundryRoom">
+                                                        <input asp-for="Features.LaundryRoom" type="checkbox"> Laundry Room
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.JogPath">
+                                                        <input asp-for="Features.JogPath" type="checkbox"> Jog Path
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.Ceilings">
+                                                        <input asp-for="Features.Ceilings" type="checkbox"> Ceilings
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label asp-for="Features.DoubleSinks">
+                                                        <input asp-for="Features.DoubleSinks" type="checkbox"> Dual Sinks
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <!-- End step 2 -->
+
+                            <div class="tab-pane" id="step3">
+                                <h4 class="info-text">Give us some images and videos ? </h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label asp-for="MultiFiles">Select Photos</label>
+                                            <input asp-for="MultiFiles" class="form-control" id="property-image" accept="image/png, image/gif, image/jpeg, image/jpg" required multiple />
+                                            <span asp-validation-for="MultiFiles" class="text-danger"></span>
+                                            <span id="multiimageerror" class="text-danger" style="display:none">Invalid Image(Extenions allowed-:jpeg,gif,png,jpg)</span>
+                                            <p class="help-block">Choose from multiple images of your home.</p>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label asp-for=VidUrl>Home Video</label>
+                                            <input asp-for="VidUrl" id="VidUrl" class="form-control" placeholder="http://www.youtube.com, http://vimeo.com" type="text">
+                                            <span  id="vid" class="text-danger"></span>
+
+
+
+                                        </div>
+                                        @* <div class="form-group">
+                                        <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
+                                        </div>
+
+                                        <div class="form-group">
+                                        <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  End step 3 -->
+
+
+                            <div class="tab-pane" id="step4">
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label asp-for="AdditionalDetails.BuiltIn">Built In:</label>
+                                                <input asp-for="AdditionalDetails.BuiltIn" type="number" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label asp-for="AdditionalDetails.Parking">Parking</label>
+                                                <input asp-for="AdditionalDetails.Parking" type="text" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label asp-for="AdditionalDetails.View">View</label>
+                                                <input asp-for="AdditionalDetails.View" type="text" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label asp-for="AdditionalDetails.WaterFrontDescription">Waterfront Description</label>
+                                                <input asp-for="AdditionalDetails.WaterFrontDescription" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label asp-for="AdditionalDetails.WaterFront">
+                                                    <input asp-for="AdditionalDetails.WaterFront" type="checkbox"> Water Front
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="">
+                                            <p>
+                                                <label><strong>Terms and Conditions</strong></label> By accessing or using Danweyne.com services, such as posting your property advertisement with your personal information on our website you agree to
+                                                the collection, use and disclosure of your personal information in the legal proper manner
+                                            </p>
+
+                                            <div class="checkbox">
+                                                <label asp-for="TermsAndCondition">
+                                                    <input type="checkbox" id="terms" asp-for="TermsAndCondition" /> <strong>Aqbal Sharciga Bogaan.</strong>
+                                                    <div id="errorterm" class="text-danger"></div>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  End step 4 -->
+
+                        </div>
+
+                        <div class="wizard-footer">
+                            <div class="pull-right">
+                                <input id="Next" type='button' class='btn btn-next btn-primary' name='next' value='Next' onsubmit="Next(event)" />
+                                <input type='submit' class='btn btn-finish btn-primary ' name="finish" id="prop_submit" value='Finish' asp-action="Add" asp-controller="Properties" formmethod="post" />
+                            </div>
+
+                            <div class="pull-left">
+                                <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+                <!-- End submit form -->
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#VidUrl").on('change', function () {
+                document.getElementById("vid").innerHTML = " ";
+            });
+            $("#cover_image").on('change', function () {
+                var IsValid = openFile($("#cover_image")[0].value)
+                if (IsValid) {
+                    $("#ImageValidation").css("display", "none")
+                }
+                else {
+                    $("#ImageValidation").css("display", "block")
+                }
+            });
+            $('#property-image').on('change', function (e) {
+                var files = e.target.files; // Get the selected files
+                var filenames = [];
+                // Loop through the files and store their names in an array
+                for (var i = 0; i < files.length; i++) {
+                    var IsValid = openFile(files[i].name)
+                    if (!IsValid) {
+                        document.getElementById("multiimageerror").style.display = "block"
+                        return;
+                    } else {
+                        document.getElementById("multiimageerror").style.display = "none"
+                        return;
+                    }
+                }
+            });
+        });
+        // Output the filenames
+        function isValidVideoUrl() {
+            var videoUrlInput = document.getElementById("VidUrl").value;
+            var pattern = /^(http(s)?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)([a-zA-Z0-9_-]{11}|[0-9]+)$/;
+            // Test the URL against the pattern
+            return pattern.test(videoUrlInput);
+        }
+        function openFile(file) {
+            var extension = file.substr((file.lastIndexOf('.') + 1));
+            if (extension == "png" || extension == "gif" || extension == "jpeg" || extension == "jpg") {
+                return true
+            }
+            else {
+                return false
+            }
+        };
+        $(function () {
+            $('#Name').on('input', function () {
+                // Remove any previous error message
+                $('#Name-validation-msg').hide();
+
+                // Get the entered value
+                var name = $(this).val();
+                var isValid = true;
+                // Set the maximum allowed length
+                var maxLength = 60;
+
+                // Check if the entered value exceeds the maximum length
+                if (name.length > maxLength ) {
+                    // Display an error message
+                    $('#Name-validation-msg').show();
+                    $(this).val(name.slice(0, maxLength));
+                    //isValid = false;
+                }
+            });
+            $('#Price').on('input', function () {
+                // Remove any previous error message
+                $(this).next('.error-message').remove();
+
+                // Get the entered value
+                var price = $(this).val();
+
+                // Check if the entered value is a valid number
+                if (isNaN(price)) {
+                    // Display an error message
+                    $(this).after('<div class="error-message">Invalid number</div>');
+                }
+            });
+        });
+    </script>
+}
+

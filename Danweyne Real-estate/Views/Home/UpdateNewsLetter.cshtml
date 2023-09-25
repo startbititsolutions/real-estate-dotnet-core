@@ -1,0 +1,85 @@
+﻿@model Models.Database_Models.Newsletter
+<style>
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 0px;
+        cursor: pointer;
+        margin-left: 12px !important;
+        height: 42px;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Update NewsLetter Details</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box-for overflow" style="margin-top: 15px;margin-bottom: 15px">
+            <div class="col-md-12 col-xs-12 login-blocks">
+                <h2>Update NewsLetter:</h2>
+                <form asp-action="UpdateNewsLetter" method="post"> 
+                    <div class="form-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" type="text" class="form-control" value="@Model.Email" id="Email">
+                        <span asp-validation-for="Email" id="error" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-12 text-right">
+                        <button type="submit" class="btn btn-primary" id="submit">Update</button>
+                        <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                    </div>
+                    
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    
+    <script>
+        $(document).ready(function () {
+            $('#error').hide();
+            $("#submit").on("click", function () {
+                var regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                var Email = $('#Email').val();
+
+
+                if (Email == '') {
+
+                    $('#error').show();
+                    $('#error').html('Please fill out this field');
+
+                    event.preventDefault();
+                }
+                else if (!regex.test(Email)) {
+                    //alert("invalid email id");
+
+                    $('#error').html('You have entered an invalid email address!');
+                    event.preventDefault();
+
+                }
+                else {
+                    $('#error').hide();
+                    $('#error').html('');
+                }
+
+
+            });
+        });
+
+    </script>
+}

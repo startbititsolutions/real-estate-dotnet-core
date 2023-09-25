@@ -1,0 +1,186 @@
+﻿@model Models.Database_Models.Banner
+@{
+    ViewData["Title"] = "banner";
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#cover_image").on('change', function () {
+
+                var IsValid = openFile($("#cover_image")[0].value)
+
+                if (IsValid) {
+                    $("#ImageValidation").css("display", "none")
+                }
+                else {
+                    $("#ImageValidation").css("display", "block")
+                }
+            });
+            $("#BannerForm").submit(function (e) {
+                var IsValid = openFile($("#cover_image")[0].value)
+
+                if (!IsValid) {
+                    e.preventDefault();
+                }
+            });
+
+            $("#submit").on("click", function () {
+
+
+                var BannerName = $('#BannerName').val();
+                var cover_image = $('#cover_image').val();
+                if (BannerName == '') {
+                    $('#Bannererror').show();
+                    $('#Bannererror').html('Banner name is required');
+                    event.preventDefault();
+                }
+                else {
+                    $('#Bannererror').hide();
+                    $('#Bannererror').html('');
+                }
+                if (cover_image == '') {
+                    $('#imgerror').show();
+                    $('#imgerror').html('Cover image is required');
+                    event.preventDefault();
+                }
+                else {
+                    $('#imgerror').hide();
+                    $('#imgerror').html('');
+                }
+            });
+
+        })
+
+        function openFile(file) {
+            var extension = file.substr((file.lastIndexOf('.') + 1));
+            if (extension == "png" || extension == "gif" || extension == "jpeg" || extension == "jpg") {
+                return true
+            }
+            else {
+                return false
+            }
+        };
+    </script>
+}
+
+<style>
+    .form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 15px;
+        margin-top: 25px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .form-submit:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 12px !important;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+
+    .contact {
+        margin-left: 20px;
+        margin-right: 35px;
+    }
+
+    .btn {
+        margin-bottom: 20px;
+    }
+</style>
+<!-- banner area -->
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">ADD BANNER</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+@*                    <h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:145px">ADD BANNER : </h2>*@
+                    <form asp-action="banner" id="BannerForm" method="post" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="BannerName">Banner Name</label>
+                                    <input asp-for="BannerName" type="text" class="form-control" id="BannerName" placeholder="Banner name">
+                                    <span id="Bannererror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="BannerImage">Banner Image</label>
+                                    <input asp-for="BannerUrl" type="file" class="form-control" id="cover_image" accept="image/png, image/gif, image/jpeg, image/jpg" required>
+                                    <span asp-validation-for="BannerUrl" class="text-danger" id="imgerror"></span>
+                                    <span id="ImageValidation" class="text-danger" style="display:none">Invalid Image(Extenions allowed-:jpeg,gif,png,jpg)</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary form-submit" id="submit">Add Banner</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+                        </div>
+                        @{
+                            if (@TempData["Msg"] != null)
+                            {
+                                <script>
+                                    alert('@TempData["msg"]')
+                                </script>
+                            }
+                        }
+                    </form>
+                    <div class="alert " role="alert" id="divMessage" style="margin-top: -20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

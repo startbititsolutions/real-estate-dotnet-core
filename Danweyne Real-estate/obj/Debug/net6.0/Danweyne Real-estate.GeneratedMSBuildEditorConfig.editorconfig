@@ -1,0 +1,217 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Danweyne_Real_estate
+build_property.RootNamespace = Danweyne_Real_estate
+build_property.ProjectDir = C:\real-estate-dotnet-core\Danweyne Real-estate\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\real-estate-dotnet-core\Danweyne Real-estate
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/Check.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGVjay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/RegisterAsAgent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RlckFzQWdlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/Thankyou.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxUaGFua3lvdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/YourProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxZb3VyUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/_LoginPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfTG9naW5QYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Account/_RegisterPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfUmVnaXN0ZXJQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Banner/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyXFNob3cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Banner/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Blog/BlogDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xCbG9nRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Blog/bloglist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xibG9nbGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Blog/form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xmb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Blog/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xTaG93LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Blog/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1x1cGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Contact/ShowData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxTaG93RGF0YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Contact/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Faq/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFxXEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Faq/AddMoreFaqAnswer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFxXEFkZE1vcmVGYXFBbnN3ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Faq/AdminShow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFxXEFkbWluU2hvdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Faq/EditFaqAnswere.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFxXEVkaXRGYXFBbnN3ZXJlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Faq/EditFaqQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFxXEVkaXRGYXFRdWVzdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Faq/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFxXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Home/banner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxiYW5uZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Home/EmailData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFbWFpbERhdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Home/Terms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXJtcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Home/UpdateNewsLetter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGRhdGVOZXdzTGV0dGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Properties/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Properties/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Properties/property.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xwcm9wZXJ0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Properties/PropertyList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xQcm9wZXJ0eUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Properties/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xTaG93LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Properties/_PropertiesTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xfUHJvcGVydGllc1RhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/Components/abc/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcYWJjXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/Myprofile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE15cHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/submit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHN1Ym1pdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Temp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVtcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/real-estate-dotnet-core/Danweyne Real-estate/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-v4s1dffbkj

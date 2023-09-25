@@ -1,0 +1,236 @@
+﻿@model Danweyne_Real_estate.Models.UpdateBlogViewModel
+@{
+    ViewData["Title"] = "form";
+}
+<style>
+
+
+    .form-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+        .form-submit:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+    .form-cancel {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 12px !important;
+        margin-bottom: 10px;
+    }
+
+        .form-cancel:hover {
+            background-color: #b52d3a;
+            color: white;
+        }
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">UPDATE BLOG</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-xs-12" style="border: 1px solid #EEE;">
+                <div class="" id="contact1">
+                @*    <h2 style="font-size:20px;border-bottom: 2px solid #FDC600;line-height: 30px;width:165px">UPDATE BLOG : </h2>*@
+                    <form method="post" enctype="multipart/form-data" asp-action="Update" asp-controller="Blog"  id="updateBlogForm">
+                        <input type="hidden" asp-for="BlogId" />
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="Title" class="form-label">Title</label>
+                                    <input type="text" asp-for="Title" class="form-control" id="Title" placeholder="Title" />
+                                    <span id="titleerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="AuthorName" class="form-label">Author Name</label>
+                                    <input type="text" asp-for="AuthorName" class="form-control" id="AuthorName" placeholder="Author name"/>
+                                    <span asp-validation-for="AuthorName" id="AuthorNameError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="BlogName" class="form-label">Blog Name</label>
+                                    <input type="text" asp-for="BlogName" class="form-control" id="BlogName" placeholder="Blog name" />
+                                    <span asp-validation-for="BlogName" id="BlogNameError" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="Summary" class="form-label">Summary</label>
+                                    <textarea asp-for="Summary" class="form-control" id="summary" placeholder="Summary"></textarea>
+                                    <span asp-validation-for="Summary" id="summaryerror" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Current Image</label>
+                                    @if (!string.IsNullOrEmpty(Model.OldImage))
+                                    {
+                                        string imagePath = "/" + Model.OldImage.TrimStart('/');
+                                        <img id="blogImg" src="@Url.Content(imagePath)" alt="Current Image" class="img-thumbnail" width="200" />
+                                    }
+                                    else
+                                    {
+                                        <p>No image available</p>
+                                    }
+                                    <input type="hidden" asp-for="OldImage" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="NewImage" class="form-label">New Image:</label>
+                                    <input type="file" class="form-control-file" name="NewImage" id="NewImage" accept=".jpg, .jpeg, .png">
+                                    <span asp-validation-for="NewImage" class="text-danger"></span>
+                                    <span class="text-danger" id="newImageRequiredError" style="display:none;">Please select a new image.</span>
+                                    <span class="text-danger" id="newImageTypeError" style="display:none;"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="BlogDesc" class="form-label">Description</label>
+                                    <textarea asp-for="BlogDesc" id="tiny" class="form-control desc"></textarea>
+                                    <span asp-validation-for="BlogDesc" id="BlogDescError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                @*<button type="submit" id="submitbtn" class="btn btn-primary" style="margin-bottom: 11px;"><i class=""></i>Submit Blog</button>*@
+                                <button type="submit"  class="btn btn-primary form-submit">Update</button>
+                                <button type="button" class="btn btn-info form-cancel" onclick="window.history.back()">Cancel</button>
+                            </div>
+
+                        </div>
+                        @{
+                            if (@TempData["Msg"] != null)
+                            {
+                                <script>
+                                    alert('@TempData["msg"]')
+                                </script>
+                            }
+                        }
+                    </form>
+                    <div class="alert " role="alert" id="divMessage" style="margin-top: -20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+   @* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            $('.error').hide();
+            tinymce.init({
+                selector: 'textarea#tiny',
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'charmap', 'preview',
+                    'anchor', 'pagebreak',
+                    'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                    'fullscreen', 'insertdatetime',
+                    'media', 'table', 'emoticons', 'template', 'help'
+                ],
+                toolbar: 'undo redo | styles | bold italic | forecolor backcolor |bullist numlist outdent indent| alignleft aligncenter alignright alignjustify | ' +
+                    ' preview  help',
+
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                        chkSubmit();
+                    });
+                },
+            });
+
+            // Custom file input validation
+            function validateForm() {
+                var isValid = true;
+
+                // Reset error messages
+                $('.text-danger').text('');
+
+                // Validate Author Name
+                var authorName = $('#AuthorName').val();
+                if (authorName.trim() === '') {
+                    $('#AuthorNameError').text('Author name is required');
+                    isValid = false;
+                }
+
+                // Validate Blog Name
+                var blogName = $('#BlogName').val();
+                if (blogName.trim() === '') {
+                    $('#BlogNameError').text('Blog name is required');
+                    isValid = false;
+                }
+
+                // Validate Title
+                var title = $('#Title').val();
+                if (title.trim() === '') {
+                    $('#titleerror').text('Title is required');
+                    isValid = false;
+                }
+
+                // Validate Summary
+                var summary = $('#summary').val();
+                if (summary.trim() === '') {
+                    $('#summaryerror').text('Summary is required');
+                    isValid = false;
+                }
+                var description = $('.desc').val();
+                if (description.trim() === '') {
+                    $('#BlogDescError').text('Description is required');
+                    isValid = false;
+                }
+                // Validate New Image
+                var fileInput = $('#NewImage')[0];
+                if (fileInput.files.length > 0) {
+                    var file = fileInput.files[0];
+                    var allowedExtensions = ['jpg', 'jpeg', 'png'];
+                    var extension = file.name.split('.').pop().toLowerCase();
+                    if ($.inArray(extension, allowedExtensions) === -1) {
+                        $('#newImageTypeError').text('Invalid Image (Allowed: JPEG, JPG, PNG).').show();
+                        isValid = false;
+                    }
+                }
+
+                return isValid;
+            }
+
+
+            // Handle form submission
+            $('#updateBlogForm').submit(function (e) {
+                if (!validateForm()) {
+                    e.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
+
+            // Hide error messages on file selection change
+            $('#NewImage').change(function () {
+                $('#newImageRequiredError').hide();
+                $('#newImageTypeError').hide();
+            });
+        });
+    </script>
+}

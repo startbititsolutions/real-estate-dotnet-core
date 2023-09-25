@@ -1,0 +1,33 @@
+﻿@using DataAccess.Context;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using System.Security.Claims
+@using Models;
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    if ((string)TempData.Peek("UserRole") != null)
+    {
+
+        <li class="dropdown ymm-sw " data-wow-delay="0.8s">
+            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">My Profile<b class="caret"></b></a>
+            <ul class="dropdown-menu navbar-nav">
+                <li>
+                    <a href="/Account/ChangePassword">Change Password</a>
+                </li>
+                <li>
+                    <a href="/Account/YourProfile">Your Profile</a>
+                </li>
+               
+
+
+            </ul>
+        </li>
+
+    }
+}
+
+

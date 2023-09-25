@@ -1,0 +1,50 @@
+﻿@model Models.View_Model.UserLoginModel
+
+<div class="col-md-6">
+                    <div class="box-for overflow">                         
+                        <div class="col-md-12 col-xs-12 login-blocks">
+                            <h2>Login : </h2>
+            <form asp-action="Login" id="loginform">
+                 @if ((string)TempData.Peek("Loginerror") != null)
+                    {
+                        
+                        <div class="text-danger">@((string)TempData["Loginerror"])</div>
+                    }
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" type="text" class="form-control" id="emaillogin" class="emailnew" placeholder="E-mail">
+                    <span class="emialerror text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                   
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" id="passwordlogin" placeholder="Password">
+                    <span class="passworderror text-danger">Password is required</span>
+                    
+                </div>
+
+               @* <div class="form-group">
+                    <input type="submit" value="Log In" class="btn btn-primary" id="loginsubmit">
+                </div>*@
+                <div class="col-sm-12 text-center">
+                    <button type="submit" id="loginsubmit" value="Log In" class="btn btn-primary" value="Register"><i class=""></i>Log In</button>
+                </div>
+
+            </form>
+            <a href="/Account/ForgotPassword">Forgot Password</a>
+                            <br><br />
+                            
+                           @* <h2>Social login :  </h2> 
+                            
+                            <p>
+                            <a class="login-social" href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a> 
+                            <a class="login-social" href="#"><i class="fa fa-google-plus"></i>&nbsp;Gmail</a> 
+                            <a class="login-social" href="#"><i class="fa fa-twitter"></i>&nbsp;Twitter</a>  
+                            </p> *@
+
+
+                        </div>
+                        
+                    </div>
+                </div>
