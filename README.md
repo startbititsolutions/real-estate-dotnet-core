@@ -4,8 +4,7 @@
 
 The Danweyne Real Estate Website is a platform that allows users to browse and search for properties, view property details, and contact real estate agents.<br>
 Whether you're looking to buy, rent, or sell a property, our website provides a user-friendly experience to meet your real estate needs.
-The application is build on .NET platform using ASP.NET MVC 5 framework. In this project the Model-View-Controller architectural design pattern is used together with an internal based SQL database.<br>
-User has an ability to choose between two different languages: English and Somali. 
+The application is build on .NET platform using ASP.NET MVC 5 framework. In this project the Model-View-Controller architectural design pattern is used together with an internal based SQL database.
 
 ## Technologies used
 
