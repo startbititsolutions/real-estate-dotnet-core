@@ -32,45 +32,54 @@ In order to run the project a small amount of prerequisites and additional steps
   ## Screenshots
 
 ### Login Page
-![Screenshot (35)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/496bbd56-23e4-4a82-9b61-2de604aed30b)
+![Screenshot (35)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/90d7f05c-a6a4-4e5b-a24c-f36b60c337b1)
 
 ### Home Page
-![Screenshot (37)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/89bcf2dc-07bf-4455-815b-95ccabe01c17)
+![Screenshot (37)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/37314f98-06c9-4e88-b41f-b1ebcc81089f)
+
 
 ### Top Submitted Property
-![Screenshot (39)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/39564c2a-1ef0-45aa-aef7-7b2f7f6fb191)
+![Screenshot (39)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/a81a2b4f-f9d5-4054-b567-6295530299bd)
+
 
 ### Properties Page
-![Screenshot (42)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/88a9efce-ec55-412c-a6fc-fd5affd474b2)
+![Screenshot (42)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/d96cd73a-6bd2-4631-9ee4-3a78f353ea0c)
+
 
 ### Property Details Page
-![Screenshot (43)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/c08edbe2-d585-487a-995d-a4051a686e75)
+![Screenshot (43)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/fe2b54f8-f1e2-488e-aaa5-0f2eafe4079e)
+
 
 ### Blog Listing Page
-![Screenshot (52)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/d64d90ed-6595-44ae-baa7-c1e0eb39d1db)
+![Screenshot (52)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/7beeb17c-3e6c-4d68-af9f-aa96c8f48d6d)
+
 
 ### Blog Detail Page
-![Screenshot (53)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/340b1d9e-5d9c-4b34-9d85-084c13009268)
+![Screenshot (53)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/7fc6ed92-b483-4a27-aece-caae0a03d40f)
+
 
 ### Faq Page
-![Screenshot (54)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/0dbfade0-e785-40bd-a1eb-83260932ffca)
+![Screenshot (54)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/99cb8b54-c96b-4aeb-91cb-2777bc16cc7b)
 
 ### Contact Page
-![Screenshot (55)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/d8a65bc3-4717-4049-b28c-6880c60d6aaa)
+![Screenshot (55)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/01d2148d-cde4-48cc-92da-514870f8be23)
+
 
 ### Forgot Password 
-![Screenshot (56)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/7e4c4c98-c865-4b0c-8804-6d3fa12ef74e)
+![Screenshot (56)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/22e62ac8-9f08-42df-b9d5-b022b0ea1bb9)
 
 ### Change Password
-![Screenshot (57)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/ffc3acb6-3c0d-4293-9a5e-36b21612feb2)
+![Screenshot (57)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/cadafc4c-f4d3-442e-a74e-1c0e185d3a22)
+
 
 ### Profile Page
-![Screenshot (58)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/68ae58e5-1584-4fd2-a9fd-9a2f023be1e0)
+![Screenshot (58)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/c2e397af-d17e-49bf-88ba-d797f7b8f38c)
+
 
 ### Property Submit Page
-![Screenshot (59)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/6845ba59-90fd-4f73-9ccd-7faa8a1a92a3)
+![Screenshot (59)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/15d8a022-cf18-4b49-8baf-c9991fd99f26)
 
-Test
-![Screenshot (78)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/af17bf61-68c9-4248-be3e-aa5d5bbe6f1d)
+
+
 
 
