@@ -70,3 +70,7 @@ In order to run the project a small amount of prerequisites and additional steps
 ### Property Submit Page
 ![Screenshot (59)](https://github.com/BhairavSB/DanweyneRealEstate/assets/133846396/6845ba59-90fd-4f73-9ccd-7faa8a1a92a3)
 
+Test
+![Screenshot (78)](https://github.com/startbititsolutions/real-estate-dotnet-core/assets/133846396/af17bf61-68c9-4248-be3e-aa5d5bbe6f1d)
+
+
