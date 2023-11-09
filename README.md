@@ -2,7 +2,7 @@
 
 ## Description
 
-The Danweyne Real Estate Website is a platform that allows users to browse and search for properties, view property details, and contact real estate agents.<br>
+The Real Estate Website is a platform that allows users to browse and search for properties, view property details, and contact real estate agents.<br>
 Whether you're looking to buy, rent, or sell a property, our website provides a user-friendly experience to meet your real estate needs.
 The application is build on .NET platform using ASP.NET MVC 5 framework. In this project the Model-View-Controller architectural design pattern is used together with an internal based SQL database.
 
