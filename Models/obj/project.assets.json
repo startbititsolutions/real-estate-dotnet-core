@@ -704,11 +704,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\real-estate-dotnet-core\\Models\\Models.csproj",
+      "projectUniqueName": "C:\\Users\\startbit\\Source\\Repos\\real-estate-dotnet-core\\Models\\Models.csproj",
       "projectName": "Models",
-      "projectPath": "C:\\real-estate-dotnet-core\\Models\\Models.csproj",
+      "projectPath": "C:\\Users\\startbit\\Source\\Repos\\real-estate-dotnet-core\\Models\\Models.csproj",
       "packagesPath": "C:\\Users\\startbit\\.nuget\\packages\\",
-      "outputPath": "C:\\real-estate-dotnet-core\\Models\\obj\\",
+      "outputPath": "C:\\Users\\startbit\\Source\\Repos\\real-estate-dotnet-core\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\startbit\\AppData\\Roaming\\NuGet\\NuGet.Config",
